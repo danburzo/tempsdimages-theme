@@ -1,0 +1,21 @@
+{% extends 'single/single.twig' %}
+
+{% set loc_adresa = post.get_field('adresa') %}
+{% set loc_coordonate = post.get_field('coordonate') %}
+
+{% block content %}
+	<h1>{{post.title}}</h1>
+	<p>
+		{% if loc_coordonate %}
+			{{ loc_adresa }}
+		{% else %}
+			<a href='{{loc_coordonate}}'>{{ loc_adresa }}</a>
+		{% endif %}
+	</p>
+
+	<div class=''>
+		{{ post.content }}
+	</div>
+
+	<h2>Evenimente care urmează la {{post.title}}</h2>
+{% endblock %}

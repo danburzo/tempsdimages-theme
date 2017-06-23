@@ -1,0 +1,7 @@
+<p>
+	{% if loc.coordonate %}
+		<a href='{{loc.coordonate}}'>{{ loc.adresa }}</a>
+	{% else %}
+		{{ loc.adresa }}
+	{% endif %}
+</p>

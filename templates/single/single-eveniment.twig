@@ -1,0 +1,32 @@
+{% extends 'single/single.twig' %}
+
+{% set eveniment_artisti = post.get_field('artisti') %}
+{% set eveniment_loc = post.get_field('loc') %}
+
+{% block content %}
+	<h1>{{post.title}}</h1>
+
+	{% 
+		include 'tease/tease-loc' with {
+			'loc': eveniment_loc
+		}
+	%}
+
+	<div class=''>
+		{{ post.content }}
+	</div>
+
+	<div class=''>
+		{% for artist in eveniment_artisti %}
+		<div class=''>
+			<h2>{{artist.title}}</h2>
+			<img src="{{TimberImage(artist.profile_image).src}}">
+			<div>{{artist.content}}</div>
+		</div>
+		{% endfor %}
+	</div>
+
+	<h2>Reprezentații care urmează</h2>
+
+	<p>Aici vine lista cu reprezentațiile evenimentului care urmează</p>
+{% endblock %}

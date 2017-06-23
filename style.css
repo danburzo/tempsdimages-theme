@@ -1,5 +1,15 @@
 /*
- * Theme Name: My Timber Starter Theme
- * Description: Starter Theme to use with Timber
- * Author: Upstatement and YOU!
+ * Theme Name: Temps D'Images
+ * Description: Temă de Wordpress pentru festivalul Temps D'Images
+ * Author: Dan Burzo / Forklor
 */
+
+body {
+	font-family: Rubik, Helvetica, Arial, sans-serif;
+	color: #222222;
+	font-weight: 300;
+}
+
+b, strong, h1, h2, h3, h4, h5, h6 {
+	font-weight: 500;
+}

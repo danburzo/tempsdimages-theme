@@ -14,7 +14,7 @@ if ( ! class_exists( 'Timber' ) ) {
 
 Timber::$dirname = array('templates', 'views');
 
-class StarterSite extends TimberSite {
+class TDISite extends TimberSite {
 
 	function __construct() {
 		add_theme_support( 'post-formats' );
@@ -25,38 +25,173 @@ class StarterSite extends TimberSite {
 		add_filter( 'get_twig', array( $this, 'add_to_twig' ) );
 		add_action( 'init', array( $this, 'register_post_types' ) );
 		add_action( 'init', array( $this, 'register_taxonomies' ) );
+		add_action( 'init', array( $this, 'register_nav_menus' ) );
+		add_action( 'init', array( $this, 'register_shortcodes' ) );
 		parent::__construct();
 	}
 
 	function register_post_types() {
-		//this is where you can register custom post types
+		$this->register_cpt_loc();
+		$this->register_cpt_artist();
+		$this->register_cpt_eveniment();
+		$this->register_cpt_editie();
 	}
 
 	function register_taxonomies() {
-		//this is where you can register custom taxonomies
+		$this->register_tax_categorie_eveniment();
+	}
+
+	function register_nav_menus() {
+		register_nav_menu('main-menu',__( 'Main Menu' ));
+		register_nav_menu('footer-menu',__( 'Footer Menu' ));
+	}
+
+	function register_shortcodes() {
+
 	}
 
 	function add_to_context( $context ) {
-		$context['foo'] = 'bar';
-		$context['stuff'] = 'I am a value set in your functions.php file';
-		$context['notes'] = 'These values are available everytime you call Timber::get_context();';
-		$context['menu'] = new TimberMenu();
+		$context['menu'] = new TimberMenu('main-menu');
+		$context['footer_menu'] = new TimberMenu('footer-menu');
+		$context['pagination'] = Timber::get_pagination();
+		
 		$context['site'] = $this;
+		$context['is_home'] = is_home() || is_front_page();
+
+		// add the WPML languages
+		if (function_exists('icl_get_languages')) {
+			$context['languages'] = icl_get_languages('skip_missing=0&orderby=code');
+		}
 		return $context;
 	}
 
-	function myfoo( $text ) {
-		$text .= ' bar!';
-		return $text;
+	function add_to_twig( $twig ) {
+		$twig->addExtension( new Twig_Extension_StringLoader() );
+		return $twig;
 	}
 
-	function add_to_twig( $twig ) {
-		/* this is where you can add your own functions to twig */
-		$twig->addExtension( new Twig_Extension_StringLoader() );
-		$twig->addFilter('myfoo', new Twig_SimpleFilter('myfoo', array($this, 'myfoo')));
-		return $twig;
+	/* Custom post types */
+	function register_cpt_loc() {
+		register_post_type('loc', array(
+			'labels' => array(
+				'name' => 'Locuri',
+				'singular_name' => 'Loc'
+			),
+			'description' => 'Locuri pentru evenimente',
+			'rewrite' => array(
+				'slug' => 'places'
+			),
+			'supports' => array(
+				'title', 
+				'editor', 
+				'thumbnail', 
+				'excerpt', 
+				'custom-fields', 
+				'page-attributes'
+			),
+			'public' => true,
+			'has_archive' => true,
+			'hierarchical' => false
+		));
+	}
+
+	function register_cpt_artist() {
+		register_post_type('artist', array(
+			'labels' => array(
+				'name' => 'Artiști',
+				'singular_name' => 'Artist'
+			),
+			'description' => 'Artiști participanți',
+			'rewrite' => array(
+				'slug' => 'artists'
+			),
+			'supports' => array(
+				'title', 
+				'editor', 
+				'thumbnail', 
+				'excerpt', 
+				'custom-fields', 
+				'page-attributes'
+			),
+			'public' => true,
+			'has_archive' => true,
+			'hierarchical' => false
+		));
+	}
+
+	function register_cpt_eveniment() {
+		register_post_type('eveniment', array(
+			'labels' => array(
+				'name' => 'Evenimente',
+				'singular_name' => 'Eveniment'
+			),
+			'description' => 'Evenimente din program',
+			'rewrite' => array(
+				'slug' => 'events'
+			),
+			'supports' => array(
+				'title', 
+				'editor', 
+				'thumbnail', 
+				'excerpt', 
+				'custom-fields', 
+				'page-attributes'
+			),
+			'public' => true,
+			'has_archive' => true,
+			'hierarchical' => true
+		));
+	}
+
+	function register_cpt_editie() {
+		register_post_type('editie', array(
+			'labels' => array(
+				'name' => 'Ediții',
+				'singular_name' => 'Ediție'
+			),
+			'description' => 'Edițiile TDI',
+			'rewrite' => array(
+				'slug' => 'editions'
+			),
+			'supports' => array(
+				'title', 
+				'editor', 
+				'thumbnail', 
+				'excerpt', 
+				'custom-fields', 
+				'page-attributes'
+			),
+			'public' => true,
+			'has_archive' => true,
+			'hierarchical' => true
+		));
+	}
+
+	/* Taxonomies */
+
+	function register_tax_categorie_eveniment() {
+		register_taxonomy('categorie_eveniment', 'eveniment', array(
+			'labels' => array(
+				'name' => 'Categorii eveniment',
+				'singular_name' => 'Categorie eveniment'
+			),
+			'hierarchical' => true,
+			'public' => true,
+			'rewrite' => array(
+				'slug' => 'event-categories'
+			),
+			'show_in_quick_edit' => true
+		));
+	}
+
+	function object_id_in_current_language($id, $type = 'page') {
+		if (function_exists('icl_object_id')) {
+			return icl_object_id($id, $type, true);
+		} else {
+			return $id;
+		}
 	}
 
 }
 
-new StarterSite();
+new TDISite();

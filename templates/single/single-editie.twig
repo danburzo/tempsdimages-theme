@@ -1,0 +1,12 @@
+{% extends 'single/single.twig' %}
+
+{% block content %}
+	<h1>{{post.title}}</h1>
+	<div>{{post.content}}</div>
+
+	<div>
+		{% for zi_program in post.get_field('program') %}
+			zi de program
+		{% endfor %}
+	</div>
+{% endblock %}
