@@ -1,0 +1,16 @@
+<header>
+	{% block header %}
+		<h1 role="banner">
+			<a href="{{site.url}}" rel="home">
+				{{site.name}}
+			</a>
+		</h1>
+		<nav role="navigation">
+			{% 
+				include "components/menu.twig" with {
+					'menu': menu.get_items
+				} 
+			%}
+		</nav>
+	{% endblock %}
+</header>
