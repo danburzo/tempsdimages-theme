@@ -7,22 +7,26 @@
 		{% endblock %}
 	</head>
 	<body class="{{body_class}}">
-		{% block header %}
-			{% include 'components/header.twig' %}
-		{% endblock %}
 
-		<section role="main">
-			{% if title %}
-				<h1>{{ title }}</h1>
-			{% endif %}
-
-			{% block content %}
-				Sorry, no content
+		<div class='page'>
+			{% block header %}
+				{% include 'components/header.twig' %}
 			{% endblock %}
-		</section>
 
-		{% block footer %}
-			{% include 'components/footer.twig' %}
-		{% endblock %}
+			<section role="main">
+				{% if title %}
+					<h1>{{ title }}</h1>
+				{% endif %}
+
+				{% block content %}
+					Sorry, no content
+				{% endblock %}
+			</section>
+
+			{% block footer %}
+				{% include 'components/footer.twig' %}
+			{% endblock %}
+
+		</div>
 	</body>
 </html>

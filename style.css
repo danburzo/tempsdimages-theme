@@ -4,10 +4,16 @@
  * Author: Dan Burzo / Forklor
 */
 
+html {
+	font-size: 16px;
+}
+
 body {
 	font-family: Chivo, Helvetica, Arial, sans-serif;
-	color: #303030;
+	color: #333;
 	line-height: 1.5;
+	padding: 1em;
+	margin: 0;
 }
 
 a {
@@ -29,11 +35,21 @@ ul, ol {
 }
 
 header {
-	padding: 2em;
+	padding: 0 0 1em;
 	border-bottom: 0.25em solid #c06;
 }
 
 footer {
-	padding: 2em;
+	padding: 1em 0 0;
 	border-top: 0.25em solid #c06;
+}
+
+img {
+	max-width: 100%;
+}
+
+
+.page {
+	border: 0.25em solid #c06;
+	padding: 1em;
 }
