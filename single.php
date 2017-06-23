@@ -13,6 +13,36 @@ $context = Timber::get_context();
 $post = Timber::query_post();
 $context['post'] = $post;
 
+switch ($post->post_type) {
+	case 'artist':
+		$context['evenimente'] = Timber::get_posts(
+			array(
+				'post_type' => 'eveniment',
+				'meta_query' => array(
+					array(
+						'key' => 'artists',
+						'value' => '"' . $post->ID . '"', 
+						'compare' => 'LIKE'
+					)
+				)
+			)
+		);
+		break;
+	case 'loc':
+		$context['evenimente'] = Timber::get_posts(
+			array(
+				'post_type' => 'eveniment',
+				'meta_query' => array(
+					array(
+						'key' => 'loc',
+						'value' => $post->ID
+					)
+				)
+			)
+		);
+		break;
+}
+
 if ( post_password_required( $post->ID ) ) {
 	Timber::render( 'single/single-password.twig', $context );
 } else {

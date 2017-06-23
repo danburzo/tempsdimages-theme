@@ -27,6 +27,7 @@ class TDISite extends TimberSite {
 		add_action( 'init', array( $this, 'register_taxonomies' ) );
 		add_action( 'init', array( $this, 'register_nav_menus' ) );
 		add_action( 'init', array( $this, 'register_shortcodes' ) );
+		add_action( 'pre_get_posts', array( $this, 'configure_get_posts' ) );
 		parent::__construct();
 	}
 
@@ -189,6 +190,23 @@ class TDISite extends TimberSite {
 			return icl_object_id($id, $type, true);
 		} else {
 			return $id;
+		}
+	}
+
+	function configure_get_posts($query) {
+
+		// Don't alter queries in the admin interface
+		// and don't alter any query that's not the main one
+		if (is_admin() || !$query->is_main_query()) {
+			return;
+		} 
+
+		// For custom post type based archives
+		if ($query->is_post_type_archive()) {
+			// Only show top-level posts
+			if ($query->query_vars['post_parent'] == false) {
+				$query->set('post_parent', 0);
+			}
 		}
 	}
 
