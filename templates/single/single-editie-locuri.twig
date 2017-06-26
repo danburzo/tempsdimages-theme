@@ -1,0 +1,11 @@
+{% extends 'single/single.twig' %}
+
+{% block content %}
+	{% for loc in locuri %}
+		{% 
+			include 'tease/tease-loc.twig' with {
+				'post': loc
+			}
+		%}
+	{% endfor %}
+{% endblock %}

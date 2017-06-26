@@ -1,7 +1,18 @@
-<p>
-	{% if loc.coordonate %}
-		<a href='{{loc.coordonate}}'>{{ loc.adresa }}</a>
+<div class='tease-loc'>
+	<h4 class='tease-loc__title'><a href='{{post.link}}'>{{ post.title }}</a></h4>
+	<div class='tease-loc__adress'>
+	
+	{% set coordonate = post.get_field('coordonate') %}
+	{% set adresa = post.get_field('adress') %}
+
+	{% if coordonate %}
+		<a href='http://www.google.com/maps/place/{{ coordonate.lat }},{{ coordonate.lng }}' target='_blank'>
+			{{ adresa }}
+		</a>
 	{% else %}
-		{{ loc.adresa }}
+		{{ adresa }}
 	{% endif %}
-</p>
+	
+	</div>
+	<p class='tease-loc__description'>{{ post.content }}</p>
+</div>

@@ -8,12 +8,12 @@
 	</head>
 	<body class="{{body_class}}">
 
-		<div class='page'>
+		<div class='tdi__page'>
 			{% block header %}
 				{% include 'components/header.twig' %}
 			{% endblock %}
 
-			<section role="main">
+			<section role="main" class='g__container'>
 				{% if title %}
 					<h1>{{ title }}</h1>
 				{% endif %}

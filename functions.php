@@ -36,10 +36,10 @@ class TDISite extends TimberSite {
 		$this->register_cpt_artist();
 		$this->register_cpt_eveniment();
 		$this->register_cpt_editie();
+		$this->register_cpt_galerie();
 	}
 
 	function register_taxonomies() {
-		$this->register_tax_categorie_eveniment();
 	}
 
 	function register_nav_menus() {
@@ -168,20 +168,27 @@ class TDISite extends TimberSite {
 		));
 	}
 
-	/* Taxonomies */
-
-	function register_tax_categorie_eveniment() {
-		register_taxonomy('categorie_eveniment', 'eveniment', array(
+	function register_cpt_galerie() {
+		register_post_type('galerie', array(
 			'labels' => array(
-				'name' => 'Categorii eveniment',
-				'singular_name' => 'Categorie eveniment'
+				'name' => 'Galerii',
+				'singular_name' => 'Galerie'
 			),
-			'hierarchical' => true,
-			'public' => true,
+			'description' => 'Galerii TDI',
 			'rewrite' => array(
-				'slug' => 'event-categories'
+				'slug' => 'galleries'
 			),
-			'show_in_quick_edit' => true
+			'supports' => array(
+				'title', 
+				'editor', 
+				'thumbnail', 
+				'excerpt', 
+				'custom-fields', 
+				'page-attributes'
+			),
+			'public' => true,
+			'has_archive' => true,
+			'hierarchical' => true
 		));
 	}
 
@@ -207,9 +214,92 @@ class TDISite extends TimberSite {
 			if ($query->query_vars['post_parent'] == false) {
 				$query->set('post_parent', 0);
 			}
+
+			if ($query->query_vars['post_type'] == 'loc') {
+				$query->set('posts_per_archive_page', -1);
+			}
 		}
 	}
 
+	function get_editie($post) {
+		$ancestors = array_reverse(get_post_ancestors($post->ID));
+		if (count($ancestors)) {
+			$top_ancestor = get_post($ancestors[0]);
+			if ($top_ancestor->post_type == 'editie') {
+				return $top_ancestor;
+			}
+		}
+	}
+
+	function get_evenimente_for_editie($editie) {
+		return Timber::get_posts(
+			array(
+				'posts_per_page' => -1,
+				'post_type' => 'eveniment',
+				'meta_query' => array(
+					array(
+						'key' => 'editie',
+						'value' => $editie->ID
+					)
+				)
+			)
+		);
+	}
+
+	function get_loc_from_eveniment($eveniment) {
+		return new TimberPost(get_field('loc', $eveniment->ID));
+	}
+
+	function get_locuri_for_editie($editie) {
+		return array_map(
+			array($this, 'get_loc_from_eveniment'), 
+			$this->get_evenimente_for_editie($editie)
+		);
+	}
 }
+
+// class TDIEvent extends TimberPost {
+
+// 	var $_calendar;
+// 	var $_occurrences;
+		
+// 	function get_first_occurrence() {
+// 		if (!$this->_calendar) {
+// 			$this->calendar = $this->get_field('calendar');
+// 		}
+
+// 		if (!$this->_occurrences) {
+// 			$this->_occurrences = $this->calendar;
+// 			uasort($this->_occurrences, array($this, '_sort_occurrences_by_date_and_time'));
+// 		}
+
+// 		return $this->_occurrences[0];
+// 	}
+
+// 	function _sort_occurrences_by_date_and_time($a, $b) {
+// 		$date_a = new DateTime($a['data_inceput']);
+// 		$date_b = new DateTime($b['data_inceput']);
+// 		$time_a = new DateTime($a['ora_inceput']);
+// 		$time_b = new DateTime($b['ora_inceput']);
+
+// 		if ($date_a > $date_b) {
+// 			return 1;
+// 		}
+
+// 		if ($date_a < $date_b) {
+// 			return -1;
+// 		}
+
+// 		if ($time_a > $time_b) {
+// 			return 1;
+// 		}
+
+// 		if ($time_a < $time_b) {
+// 			return -1;
+// 		}
+
+// 		return 0;
+// 	}
+// }
 
 new TDISite();

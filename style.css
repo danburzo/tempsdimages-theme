@@ -6,14 +6,25 @@
 
 html {
 	font-size: 16px;
+	opacity: 1;
+	transition: 0.1s opacity;
 }
 
 body {
-	font-family: Chivo, Helvetica, Arial, sans-serif;
-	color: #333;
+	font-family: "acumin-pro", Helvetica, Arial, sans-serif;
+	/*color: #333;*/
 	line-height: 1.5;
-	padding: 1em;
+	padding: 0;
 	margin: 0;
+	font-weight: 300;
+}
+
+.wf-loading {
+	opacity: 0;
+}
+
+.wf-inactive {
+	opacity: 1;
 }
 
 a {
@@ -23,11 +34,9 @@ a {
 
 h1, h2, h3, h4, h5, h6 {
 	margin: 0;
-	font-family: Eczar, Helvetica, Arial, sans-serif;
-}
-
-p {
-	margin: 0;
+	font-family: "acumin-pro-wide", Helvetica, Arial, sans-serif;
+	font-weight: 700;
+	/*font-family: Eczar, Helvetica, Arial, sans-serif;*/
 }
 
 ul, ol {
@@ -35,22 +44,170 @@ ul, ol {
 	padding: 0;
 }
 
-header {
-	padding: 0 0 1em;
-	border-bottom: 0.25em solid #c06;
+nav ul {
+	list-style: none;
 }
 
 footer {
 	padding: 1em 0 0;
-	border-top: 0.25em solid #c06;
+	/*border-top: 0.25em solid #c06;*/
 }
 
 img {
 	max-width: 100%;
 }
 
+b, strong {
+	font-weight: 700;
+}
 
-.page {
-	border: 0.25em solid #c06;
+
+/* Component: Header */
+
+.header {
+	text-align: center;
+	margin-bottom: 2em;
+}
+
+.header__logo {}
+
+.header__mainnav {
+	font-family: 'acumin-pro-condensed', Helvetica, Arial, sans-serif;
+	/*font-weight: 700;*/
+	font-size: 1.2em;
+	margin: 1em 0;
+}
+
+.header__mainnav a {
+	color: #777;
+}
+
+.header__mainnav li {
+	display: inline-block;
+	margin: 0 0.75em;
+}
+
+.header__langnav {}
+.header__langnav li {
+	display: inline-block;
+}
+
+.header__search {}
+
+.header__bar {
+	background: #000;
+	color: #fff;
+	text-align: right;
+	padding: 0.5em 0;
+	margin-bottom: 1em;
+}
+
+.header__bar nav {
+	display: inline-block;
+}
+
+.header__bar nav li {
+	display: inline-block;
+}
+
+/* Component: footer */
+
+.footer {
+	border-top: 0.2em solid #000;
+	padding: 1em 0;
+}
+
+/* 
+	Globals
+	----------------------------------
+*/
+
+.g__container {
+	max-width: 60em;
+	margin: 0 auto;
+}
+
+/* 
+	Tease boxes
+	----------------------------------
+*/
+
+/* Component: Tease loc */
+
+.tease-loc {}
+.tease-loc__title {}
+.tease-loc__description {}
+.tease-loc__address {}
+
+.tease-loc--compact {}
+
+/* Component: Tease Eveniment */
+
+.tease-eveniment {
+	margin: 2em 0;
+}
+
+.tease-eveniment__category span {
+	background: #c06;
+	color: #fff;
+	font-family: 'acumin-pro-condensed', Helvetica, Arial, sans-serif;
+	display: inline-block;
+	padding: 0.1em 0.5em;
+	text-transform: capitalize;
+}
+
+
+/* Component: Tease Eveniment instance */
+
+.tease-eveniment-instance {}
+
+/* Component: Tease artist */
+.tease-artist {}
+.tease-artist__name {}
+.tease-artist__bio {}
+
+
+/* Component: Calendar dayselect */
+
+.calendar__dayselect {
+	margin: 1em 0;
+}
+
+.calendar__dayselect .calendar__dayheader {
+	font-size: 0.75em;
 	padding: 1em;
+}
+
+/* Component: Calendar dayheader */
+
+.calendar__dayheader {
+	background: #efefef;
+	padding: 1.5em 3em;
+	display: inline-block;
+	text-align: center;
+	line-height: 1;
+}
+
+.calendar__dayheader-weekday,
+.calendar__dayheader-month,
+.calendar__dayheader-year {
+	font-family: 'acumin-pro-wide', Helvetica, Arial, sans-serif;
+	font-weight: 700;
+}
+
+.calendar__dayheader-monthday {
+	font-family: 'acumin-pro-extra-condensed', Helvetica, Arial, sans-serif;
+	font-size: 8em;
+	font-weight: 400;
+	margin-top: -0.15em;
+	font-variant-numeric: tabular-nums;
+	-moz-font-feature-settings: "tnum";
+	-webkit-font-feature-settings: "tnum";
+	font-feature-settings: "tnum";
+}
+
+.calendar__dayheader-month,
+.calendar__dayheader-year {
+	text-transform: uppercase;
+	/*font-size: 1.4em;*/
 }

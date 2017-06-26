@@ -1,17 +1,17 @@
 {% extends 'single/single.twig' %}
 
-{% set loc_adresa = post.get_field('adresa') %}
+{% set loc_adresa = post.get_field('adress') %}
 {% set loc_coordonate = post.get_field('coordonate') %}
 
 {% block content %}
 	<h1>{{post.title}}</h1>
-	<p>
-		{% if loc_coordonate %}
+	{% if loc_coordonate %}
+		<a href='http://www.google.com/maps/place/{{ loc_coordonate.lat }},{{ loc_coordonate.lng }}' target='_blank'>
 			{{ loc_adresa }}
-		{% else %}
-			<a href='{{loc_coordonate}}'>{{ loc_adresa }}</a>
-		{% endif %}
-	</p>
+		</a>
+	{% else %}
+		{{ loc_adresa }}
+	{% endif %}
 
 	<div class=''>
 		{{ post.content }}
@@ -20,8 +20,11 @@
 	{% if evenimente %}
 	<h2>Evenimente la {{post.title}}</h2>
 	{% for eveniment in evenimente %}
-		<h3>{{eveniment.title}}</h3>
-		<p>{{eveniment.content}}</p>
+		{% 
+			include 'tease/tease-eveniment.twig' with {
+				'post': eveniment
+			}
+		%}
 	{% endfor %}
 	{% endif %}
 {% endblock %}

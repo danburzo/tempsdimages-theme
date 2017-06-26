@@ -1,46 +1,19 @@
 <?php
 /**
  * The Template for displaying all single posts
- *
- * Methods for TimberHelper can be found in the /lib sub-directory
- *
- * @package  WordPress
- * @subpackage  Timber
- * @since    Timber 0.1
  */
 
 $context = Timber::get_context();
 $post = Timber::query_post();
 $context['post'] = $post;
 
-switch ($post->post_type) {
-	case 'artist':
-		$context['evenimente'] = Timber::get_posts(
-			array(
-				'post_type' => 'eveniment',
-				'meta_query' => array(
-					array(
-						'key' => 'artists',
-						'value' => '"' . $post->ID . '"', 
-						'compare' => 'LIKE'
-					)
-				)
-			)
-		);
-		break;
-	case 'loc':
-		$context['evenimente'] = Timber::get_posts(
-			array(
-				'post_type' => 'eveniment',
-				'meta_query' => array(
-					array(
-						'key' => 'loc',
-						'value' => $post->ID
-					)
-				)
-			)
-		);
-		break;
+
+// Include PHP code based on the post type 
+// (for additional queries, etc.)
+
+$post_type_include = get_template_directory() . '/include/single-' . $post->post_type . '.php';
+if (file_exists($post_type_include)) {
+	include($post_type_include);
 }
 
 if ( post_password_required( $post->ID ) ) {

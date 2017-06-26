@@ -1,37 +1,62 @@
 {% extends 'single/single.twig' %}
 
 {% set eveniment_artisti = post.get_field('artists') %}
-{% set eveniment_loc = post.get_field('loc') %}
-{% set eveniment_credits = post.get_field('credits') %}
 
 {% block content %}
-	<h1>{{post.title}}</h1>
+	<h1>{{ post.title }}</h1>
+	<div>
+		{% for artist in eveniment_artisti %}
+			{{ artist.title }}{% if not loop.last %}, {% endif %}
+		{% endfor %}
+	</div>
+	<div> {{ post.get_field('categorie') }} </div>
 
-	{% 
-		include 'tease/tease-loc.twig' with {
-			'loc': eveniment_loc
-		}
-	%}
 
-	<div class=''>
+	<div class='eveniment__meta'>
+		<div class='eveniment__metaitem'>
+			{% 
+				include 'tease/tease-loc-compact.twig' with {
+					'loc': post.get_field('loc')
+				}
+			%}
+		</div>
+		<div class='eveniment__metaitem'>
+			{{__("Preț", "TDI")}}: {{ post.get_field('pret_bilet') }}
+		</div>
+		<div class='eveniment__metaitem'>
+			{{__("Durată", "TDI")}}: {{ post.get_field('durata') }}′
+		</div>
+		<div class='eveniment__metaitem'>
+			{{__("Limbă", "TDI")}}: {{ post.get_field('limba') }}
+		</div>
+	</div>
+
+	<div>
 		{{ post.content }}
 	</div>
 
-	<div class=''>
-		{{ eveniment_credits }}
-	</div>
-
-	<div class=''>
+	<div>
 		{% for artist in eveniment_artisti %}
-		<div class=''>
-			<h2>{{artist.title}}</h2>
-			<img src="{{TimberImage(artist.profile_image).src}}">
-			<div>{{artist.content}}</div>
-		</div>
+			{% 
+				include 'tease/tease-artist.twig' with {
+					'post': artist
+				}
+			%}
 		{% endfor %}
 	</div>
 
-	<h2>Reprezentații care urmează</h2>
+	<div class=''>
+		{{ post.get_field('credits') }}
+	</div>
 
-	<p>Aici vine lista cu reprezentațiile evenimentului care urmează</p>
+	<h2>Calendar</h2>
+
+	{% for instance in post.get_field('calendar') %}
+		{% 
+			include 'tease/tease-eveniment-instance.twig' with {
+				'instance': instance
+			}
+		%}
+	{% endfor %}
+
 {% endblock %}

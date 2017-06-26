@@ -1,0 +1,39 @@
+{% if pagination.prev or pagination.next or pagination.pages | length %}
+<div class="pagination">
+    {% if pagination.prev %}
+        <a 
+            href="{{pagination.prev.link}}" 
+            class="pagination__item"
+        >
+            &larr; {{__("Precedenta", "TDI")}}
+        </a>
+    {% else %}
+        <span class='pagination__item pagination__item--inactive'>
+            &larr; {{__("Precedenta", "TDI")}}
+        </span>
+    {% endif %}
+    <ul class="pagination__list">
+        {% for page in pagination.pages %}
+            <li>
+                {% if page.link %}
+                    <a href="{{page.link}}" class="pagination__item {{page.class}}">{{page.title}}</a>
+                {% else %}
+                    <span class="pagination__item {{page.class}}">{{page.title}}</span>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    {% if pagination.next %}
+        <a 
+            href="{{pagination.next.link}}" 
+            class="pagination__item"
+        >
+            {{__("Următoarea", "TDI")}} &rarr;
+        </a>
+    {% else %}
+        <span class='pagination__item pagination__item--inactive'>
+            {{__("Următoarea", "TDI")}} &rarr;
+        </span>
+    {% endif %}
+</div>
+{% endif %}

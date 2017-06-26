@@ -1,0 +1,37 @@
+{% extends 'single/single.twig' %}
+
+{% block content %}
+
+	<div class='calendar__dayselect'>
+	{% for key, zi in zile %}
+		{%
+			include 'components/calendar-dayheader.twig' with {
+				'date': key
+			}
+		%}
+	{% endfor %}
+	</div>
+
+	{% for key, zi in zile %}
+		<div class='calendar__day'>
+
+		{%
+			include 'components/calendar-dayheader.twig' with {
+				'date': key
+			}
+		%}
+
+		{% for eveniment in zi %}
+			<div>
+				<p>{{ eveniment.ora_inceput | date("H:i") }} — {{ eveniment.ora_sfarsit | date("H:i") }}</p>
+				{% 
+					include 'tease/tease-eveniment.twig' with {
+						'post': eveniment.eveniment
+					}
+				%}
+				<p>{{eveniment.biletmaster}}</p>
+			</div>
+		{% endfor %}
+		</div>
+	{% endfor %}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'single/single.twig' %}
+
+{% block content %}
+	{% for eveniment in evenimente %}
+		{% 
+			include 'tease/tease-eveniment.twig' with {
+				'post': eveniment
+			}
+		%}
+	{% endfor %}
+{% endblock %}

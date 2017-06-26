@@ -1,20 +1,37 @@
-<header>
+<header class='header'>
 	{% block header %}
-		<h1 role="banner">
+
+		<div class='header__bar'>
+			<div class='g__container'>
+				<nav class='header__social'>
+					<ul>
+						<li><a href='#'>Biletmaster</a></li>
+						<li><a href='#'>Facebook</a></li>
+						<li><a href='#'>Vimeo</a></li>
+					</ul>
+				</nav>
+				<nav class='header__langnav'>
+					{% include 'components/lang-selector.twig' %}
+				</nav>
+				<form action="{{site.link}}" method="GET" class='header__search'>
+					<input name="s" placeholder="Caută în site" type="search">
+				</form>
+			</div>
+		</div>
+		
+		<h1 role="banner" class='header__logo'>
 			<a href="{{site.url}}" rel="home">
 				{{site.name}}
 			</a>
 		</h1>
-		<nav role="navigation">
+
+		<nav role="navigation" class='header__mainnav'>
 			{% 
 				include "components/menu.twig" with {
 					'menu': menu.get_items
 				} 
 			%}
 		</nav>
-
-		<form action="{{site.link}}" method="GET">
-			<input name="s" placeholder="Caută în site" type="search">
-		</form>
+		
 	{% endblock %}
 </header>

@@ -1,0 +1,14 @@
+<div class='tease-eveniment'>
+	{% if post.thumbnail %}
+		<img src='{{post.thumbnail.src}}'/>
+	{% endif %}
+	<div class='tease-eveniment__category'><span>{{ post.get_field('categorie') }}</span></div>
+	<h2><a href='{{post.link}}'>{{ post.title }}</a></h2>
+	{% set loc = post.get_field('loc') %}
+	{% 
+		include 'tease/tease-loc-compact.twig' with {
+			'loc': loc
+		}
+	%}
+	<p>{{ post.excerpt }}</p>
+</div>

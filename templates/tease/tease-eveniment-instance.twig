@@ -1,0 +1,7 @@
+<div class='tease-eveniment-instance'>
+	<p>{{ instance.data_inceput }} — {{ instance.data_sfarsit }}</p>
+	<p>{{ instance.ora_inceput }} — {{ instance.ora_sfarsit }}</p>
+	{% if instance.biletmaster %}
+		<a href='{{instance.biletmaster}}' target='_blank'>{{__("Cumpără bilete", "TDI")}}</a>
+	{% endif %}
+</div>
