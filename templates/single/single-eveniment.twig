@@ -3,6 +3,11 @@
 {% set eveniment_artisti = post.get_field('artists') %}
 
 {% block content %}
+
+	{% if post.thumbnail %}
+		<img src='{{TimberImage(post.thumbnail.src)}}'/>
+	{% endif %}
+
 	<h1>{{ post.title }}</h1>
 	<div>
 		{% for artist in eveniment_artisti %}
