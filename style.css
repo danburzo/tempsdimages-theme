@@ -30,6 +30,22 @@ body {
 a {
 	color: #c06;
 	text-decoration: none;
+	position: relative;
+}
+
+a:after {
+	content: ' ';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 0%;
+	height: 0.1em;
+	transition: 0.2s width;
+	background-color: currentColor;
+}
+
+a:hover:after {
+	width: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -125,6 +141,7 @@ b, strong {
 .g__container {
 	max-width: 60em;
 	margin: 0 auto;
+	padding: 0 0.5em;
 }
 
 /* 
@@ -171,6 +188,8 @@ b, strong {
 
 .calendar__dayselect {
 	margin: 1em 0;
+	white-space: nowrap;
+	overflow: auto;
 }
 
 .calendar__dayselect .calendar__dayheader {
