@@ -64,8 +64,8 @@ foreach ($evenimente as $eveniment) {
 ksort($zile);
 
 function sort_evenimente_by_ora_inceput($a, $b) {
-	return $a.ora_inceput > $b.ora_inceput ? 1 : 
-		($a.ora_inceput < $b.ora_inceput ? -1 : 0);
+	return $a['ora_inceput'] > $b['ora_inceput'] ? 1 : 
+		($a['ora_inceput'] < $b['ora_inceput'] ? -1 : 0);
 }
 
 foreach ($zile as $key => $zi) {
