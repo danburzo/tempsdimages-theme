@@ -231,6 +231,12 @@ class TDISite extends TimberSite {
 		}
 	}
 
+	function get_editie_menu($editie) {
+		if ($editie) {
+			return new TimberMenu(get_field('meniu', $editie->ID));
+		} 
+	}
+
 	function get_evenimente_for_editie($editie) {
 		return Timber::get_posts(
 			array(

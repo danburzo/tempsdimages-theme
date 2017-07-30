@@ -1,1 +1,11 @@
 {% extends 'single/single.twig' %}
+
+{% block content %}
+
+	{% 
+		include 'components/menu.twig' with {
+			'menu': editie_menu.get_items
+		}
+	%}
+
+{% endblock %}
