@@ -28,6 +28,17 @@ class TDISite extends TimberSite {
 		add_action( 'init', array( $this, 'register_nav_menus' ) );
 		add_action( 'init', array( $this, 'register_shortcodes' ) );
 		add_action( 'pre_get_posts', array( $this, 'configure_get_posts' ) );
+
+		if( function_exists('acf_add_options_page') ) {
+			acf_add_options_page(array(
+				'page_title' 	=> 'Setări generale',
+				'menu_title'	=> 'Setări generale',
+				'menu_slug' 	=> 'tdi-general-settings',
+				'capability'	=> 'edit_posts',
+				'redirect'		=> false
+			));
+		}
+
 		parent::__construct();
 	}
 
@@ -58,6 +69,8 @@ class TDISite extends TimberSite {
 		
 		$context['site'] = $this;
 		$context['is_home'] = is_home() || is_front_page();
+
+		$context['options'] = get_fields('option');
 
 		// add the WPML languages
 		if (function_exists('icl_get_languages')) {
@@ -278,6 +291,20 @@ class TDISite extends TimberSite {
 		});
 
 		return $locuri;
+	}
+
+	function is_editie_curenta($context, $editie) {
+		$editie_curenta_id = $this->object_id_in_current_language(
+			$context['options']['editia_curenta']->ID, 
+			'editie'
+		);
+
+		$editie_id = $this->object_id_in_current_language(
+			$editie->ID,
+			'editie'
+		);
+
+		return $editie_curenta_id === $editie_id;
 	}
 }
 

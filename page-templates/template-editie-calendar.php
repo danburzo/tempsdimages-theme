@@ -8,8 +8,7 @@ $context = Timber::get_context();
 $post = Timber::query_post();
 $context['post'] = $post;
 
-$editie = $context['site']->get_editie($post);
-$context['editie'] = $editie;
+include(get_template_directory() . '/include/editie-subpage.php');
 
 $evenimente = $context['site']->get_evenimente_for_editie($editie);
 
