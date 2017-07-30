@@ -295,16 +295,26 @@ class TDISite extends TimberSite {
 
 	function is_editie_curenta($context, $editie) {
 		$editie_curenta_id = $this->object_id_in_current_language(
-			$context['options']['editia_curenta']->ID, 
+			$this->get_global_option('editia_curenta')->ID, 
 			'editie'
 		);
 
-		$editie_id = $this->object_id_in_current_language(
-			$editie->ID,
-			'editie'
-		);
+		return $editie_curenta_id === $editie->ID;
+	}
 
-		return $editie_curenta_id === $editie_id;
+	/**
+	 * Advanced Custom Fields Options function
+	 * Always fetch an Options field value from the default language
+	 */
+	function cl_acf_set_language() {
+	  return acf_get_setting('default_language');
+	}
+
+	function get_global_option($name) {
+		add_filter('acf/settings/current_language', array($this, 'cl_acf_set_language'), 100);
+		$option = get_field($name, 'option');
+		remove_filter('acf/settings/current_language', array($this, 'cl_acf_set_language'), 100);
+		return $option;
 	}
 }
 
