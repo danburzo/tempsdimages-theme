@@ -247,7 +247,7 @@ class TDISite extends TimberSite {
 
 			$top_ancestor = get_post($ancestors[0]);
 			if ($top_ancestor->post_type == 'editie') {
-				return $top_ancestor;
+				return new TimberPost($top_ancestor);
 			}
 		}
 	}
