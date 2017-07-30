@@ -253,14 +253,31 @@ class TDISite extends TimberSite {
 	}
 
 	function get_loc_from_eveniment($eveniment) {
-		return new TimberPost(get_field('loc', $eveniment->ID));
+		return get_field('loc', $eveniment->ID, false);
+	}
+
+	function get_timber_post_from_id($id) {
+		return new TimberPost($id);
 	}
 
 	function get_locuri_for_editie($editie) {
-		return array_map(
-			array($this, 'get_loc_from_eveniment'), 
-			$this->get_evenimente_for_editie($editie)
+		$locuri_ids =  array_unique(
+			array_map(
+				array($this, 'get_loc_from_eveniment'), 
+				$this->get_evenimente_for_editie($editie)
+			)
 		);
+
+		$locuri = array_map(
+			array($this, 'get_timber_post_from_id'),
+			$locuri_ids
+		);
+		
+		usort($locuri, function($itemA, $itemB) {
+			return strcmp($itemA->post_title, $itemB->post_title);
+		});
+
+		return $locuri;
 	}
 }
 
