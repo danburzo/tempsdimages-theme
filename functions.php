@@ -236,7 +236,15 @@ class TDISite extends TimberSite {
 
 	function get_editie($post) {
 		$ancestors = array_reverse(get_post_ancestors($post->ID));
+		if ($post->post_type == 'editie') {
+			array_push($ancestors, $post->ID);
+		}
 		if (count($ancestors)) {
+
+			if ($ancestors[0] == $post->ID) {
+				return $post;
+			}
+
 			$top_ancestor = get_post($ancestors[0]);
 			if ($top_ancestor->post_type == 'editie') {
 				return $top_ancestor;
