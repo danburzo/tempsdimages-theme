@@ -29,6 +29,8 @@ class TDISite extends TimberSite {
 		add_action( 'init', array( $this, 'register_shortcodes' ) );
 		add_action( 'pre_get_posts', array( $this, 'configure_get_posts' ) );
 
+		add_filter( 'nav_menu_meta_box_object', array( $this, 'disable_pagination_in_menu_meta_box' ) );
+
 		if( function_exists('acf_add_options_page') ) {
 			acf_add_options_page(array(
 				'page_title' 	=> 'Setări generale',
@@ -323,6 +325,13 @@ class TDISite extends TimberSite {
 		$option = get_field($name, 'option');
 		remove_filter('acf/settings/current_language', array($this, 'cl_acf_set_language'), 100);
 		return $option;
+	}
+
+	function disable_pagination_in_menu_meta_box($obj) {
+		$obj->_default_query = array(
+			'posts_per_page' => -1
+		);
+		return $obj;
 	}
 }
 
