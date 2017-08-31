@@ -58,6 +58,7 @@ class TDISite extends TimberSite {
 	function register_nav_menus() {
 		register_nav_menu('main-menu',__( 'Main Menu' ));
 		register_nav_menu('footer-menu',__( 'Footer Menu' ));
+		register_nav_menu('top-menu',__( 'Top Menu' ));
 	}
 
 	function register_shortcodes() {
@@ -67,6 +68,7 @@ class TDISite extends TimberSite {
 	function add_to_context( $context ) {
 		$context['menu'] = new TimberMenu('main-menu');
 		$context['footer_menu'] = new TimberMenu('footer-menu');
+		$context['top_menu'] = new TimberMenu('top-menu');
 		$context['pagination'] = Timber::get_pagination();
 		
 		$context['site'] = $this;
@@ -83,7 +85,16 @@ class TDISite extends TimberSite {
 
 	function add_to_twig( $twig ) {
 		$twig->addExtension( new Twig_Extension_StringLoader() );
+		$twig->addFilter('hostname', new Twig_SimpleFilter('hostname', array($this, 'extract_hostname')));
 		return $twig;
+	}
+
+	function extract_hostname($url) {
+		return preg_replace(
+			'/[^\da-z]+/i',
+			'-',
+			str_ireplace('www.', '', parse_url($url, PHP_URL_HOST))
+		);
 	}
 
 	/* Custom post types */

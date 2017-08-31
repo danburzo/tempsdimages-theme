@@ -77,6 +77,11 @@ b, strong {
 	font-weight: 700;
 }
 
+input, textarea, select {
+	font-family: inherit;
+	font-size: 1em;
+}
+
 
 /* Component: Header */
 
@@ -108,22 +113,55 @@ b, strong {
 	display: inline-block;
 }
 
-.header__search {}
-
 .header__bar {
 	background: #000;
 	color: #fff;
 	text-align: right;
-	padding: 0.5em 0;
 	margin-bottom: 1em;
+}
+
+.header__bar a {
+	color: #fff;
 }
 
 .header__bar nav {
 	display: inline-block;
 }
 
-.header__bar nav li {
+.header__bar li {
 	display: inline-block;
+}
+
+.header__social {
+	display: inline-block;
+}
+
+.header__social .menuitem {
+	border-left: 1px solid #555;
+	padding: 0.3em 0.3em 0.5em 0.6em;
+}
+
+.header__social .menuitem:last-child {
+	border-right: 1px solid #555;
+	padding-right: 0.5em;
+}
+
+.header__social .menuitem a {
+	display: block;
+}
+
+.header__social .menuitem__icon {
+	width: 1.25em;
+	height: 1.25em;
+}
+
+.lang {
+	text-transform: uppercase;
+	letter-spacing: 0.01em;
+}
+
+.lang .lang__item--active {
+	display: none;
 }
 
 /* Component: footer */
@@ -229,4 +267,64 @@ b, strong {
 .calendar__dayheader-year {
 	text-transform: uppercase;
 	/*font-size: 1.4em;*/
+}
+
+
+/* Component: menu */
+
+.menuitem__icon {
+	vertical-align: middle;
+	width: 1em;
+	height: 1em;
+	display: none;
+}
+
+.menuitem__icon--facebook-com {
+	display: inline-block;
+	background-image: url('./static/svg/icons/facebook-white.svg');
+}
+
+.menuitem__icon--vimeo-com {
+	display: inline-block;
+	background-image: url('./static/svg/icons/vimeo-white.svg');
+}
+
+.menuitem__icon--issuu-com {
+	display: inline-block;
+	background-image: url('./static/svg/icons/issuu-white.svg');
+}
+
+.menuitem__icon--biletmaster-ro {
+	display: inline-block;
+	background-image: url('./static/svg/icons/biletmaster-white.svg');
+}
+
+.menuitem__icon--facebook-com + .menuitem__label,
+.menuitem__icon--vimeo-com + .menuitem__label,
+.menuitem__icon--issuu-com + .menuitem__label,
+.menuitem__icon--biletmaster-ro + .menuitem__label {
+	display: none;
+}
+
+/* Component: search box */
+
+.searchbox {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.searchbox__input {
+	background-image: url('./static/svg/icons/search-white.svg');
+	background-position: 0.25em center;
+	background-repeat: no-repeat;
+	background-size: 1.25em 1.25em;
+	padding-left: 1.6em;
+	background-color: transparent;
+	border: none;
+	border-bottom: 1px solid #555;
+	color: #fff;
+}
+
+.searchbox__input::placeholder {
+	color: #999;
 }

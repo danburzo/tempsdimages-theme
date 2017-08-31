@@ -4,18 +4,19 @@
 		<div class='header__bar'>
 			<div class='g__container'>
 				<nav class='header__social'>
-					<ul>
-						<li><a href='#'>Biletmaster</a></li>
-						<li><a href='#'>Facebook</a></li>
-						<li><a href='#'>Vimeo</a></li>
-					</ul>
+					{% 
+						include "components/menu.twig" with {
+							'menu': top_menu.get_items
+						} 
+					%}
 				</nav>
+				<form action="{{site.link}}" method="GET" class='searchbox'>
+					<input class='searchbox__input' name="s" type="search"
+					placeholder='{{__("Caută în site", "TDI")}}'>
+				</form>
 				<nav class='header__langnav'>
 					{% include 'components/lang-selector.twig' %}
 				</nav>
-				<form action="{{site.link}}" method="GET" class='header__search'>
-					<input name="s" placeholder="Caută în site" type="search">
-				</form>
 			</div>
 		</div>
 		

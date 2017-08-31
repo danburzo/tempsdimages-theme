@@ -1,8 +1,11 @@
 {% if menu %}
 	<ul>
 	{% for item in menu %}
-		<li class="{{ item.classes | join(' ') }}">
-			<a target="{{ item.target }}" href="{{ item.link }}">{{ item.title }}</a>
+		<li class="menuitem {{ item.classes | join(' ') }}">
+			<a target="{{ item.target }}" href="{{ item.link }}" title="{{ item.title }}">
+				<span class='menuitem__icon menuitem__icon--{{ item.link | hostname }}'></span>
+				<span class='menuitem__label'>{{ item.title }}</span>
+			</a>
 			{% 
 				include "components/menu.twig" with {
 					'menu': item.get_children
