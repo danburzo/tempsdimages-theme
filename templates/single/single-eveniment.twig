@@ -25,15 +25,28 @@
 				}
 			%}
 		</div>
+
+		{% set pret_bilet = post.get_field('pret_bilet') %}
+		{% set durata = post.get_field('durata') %}
+		{% set limba = post.get_field('limba') %}
+
+		{% if pret_bilet %}
 		<div class='eveniment__metaitem'>
-			{{__("Preț", "TDI")}}: {{ post.get_field('pret_bilet') }}
+			{{__("Preț", "TDI")}}: {{ pret_bilet }}
 		</div>
+		{% endif %}
+
+		{% if durata %}
 		<div class='eveniment__metaitem'>
-			{{__("Durată", "TDI")}}: {{ post.get_field('durata') }}′
+			{{__("Durată", "TDI")}}: {{ durata }}′
 		</div>
+		{% endif %}
+
+		{% if limba %}
 		<div class='eveniment__metaitem'>
-			{{__("Limbă", "TDI")}}: {{ post.get_field('limba') }}
+			{{__("Limbă", "TDI")}}: {{ limba }}
 		</div>
+		{% endif %}
 	</div>
 
 	<div>
