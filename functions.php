@@ -86,6 +86,7 @@ class TDISite extends TimberSite {
 	function add_to_twig( $twig ) {
 		$twig->addExtension( new Twig_Extension_StringLoader() );
 		$twig->addFilter('hostname', new Twig_SimpleFilter('hostname', array($this, 'extract_hostname')));
+		$twig->addFilter('tease_size', new Twig_SimpleFilter('tease_size', array($this, 'tease_size')));
 		return $twig;
 	}
 
@@ -95,6 +96,10 @@ class TDISite extends TimberSite {
 			'-',
 			str_ireplace('www.', '', parse_url($url, PHP_URL_HOST))
 		);
+	}
+
+	function tease_size($src) {
+		return Timber\ImageHelper::resize($src, 1400, 933, 'center');
 	}
 
 	/* Custom post types */

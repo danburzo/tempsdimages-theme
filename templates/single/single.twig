@@ -7,4 +7,11 @@
 			{{ post.content }}
 		</div>
 	</article>
+
+	{% 
+		include 'components/pagination-post.twig' with {
+			prev: post.prev('category'),
+			next: post.next('category')
+		}
+	%}
 {% endblock %}
