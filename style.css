@@ -328,3 +328,9 @@ input, textarea, select {
 .searchbox__input::placeholder {
 	color: #999;
 }
+
+/* Component: Nav */
+
+.nav--secondary li {
+	display: inline-block;
+}

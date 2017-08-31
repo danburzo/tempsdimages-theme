@@ -2,11 +2,13 @@
 
 {% block content %}
 
+	<nav class='nav--secondary'>
 	{% 
 		include 'components/menu.twig' with {
 			'menu': editie_menu.get_items
 		}
 	%}
+	<nav>
 
 	<h1>{{post.title}}</h1>
 	<div>{{post.content}}</div>
