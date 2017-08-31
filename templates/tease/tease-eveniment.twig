@@ -4,7 +4,9 @@
 	{% endif %}
 	<div class='tease-eveniment__category'><span>{{ post.get_field('categorie') }}</span></div>
 	<h2><a href='{{post.link}}'>{{ post.title }}</a></h2>
-	{% set loc = post.get_field('loc') %}
+	{% if not loc %}
+		{% set loc = post.get_field('loc') %}
+	{% endif %}
 	{% 
 		include 'tease/tease-loc-compact.twig' with {
 			'loc': loc

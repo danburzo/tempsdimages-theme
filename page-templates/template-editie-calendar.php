@@ -37,6 +37,7 @@ foreach ($evenimente as $eveniment) {
 				$ora_sfarsit = null;
 			}
 			$biletmaster = $instance['biletmaster'];
+			$loc = $instance['loc'];
 
 			foreach ($period as $zi) {
 				$zi_key = $zi->format('Y-m-d');
@@ -53,6 +54,10 @@ foreach ($evenimente as $eveniment) {
 
 				if ($biletmaster) {
 					$zi_value['biletmaster'] = $biletmaster;
+				}
+
+				if ($loc) {
+					$zi_value['loc'] = $loc;
 				}
 
 				$zile[$zi_key][] = $zi_value;

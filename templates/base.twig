@@ -23,10 +23,13 @@
 				{% endblock %}
 			</section>
 
+			{% block attachments %}
+				{% include 'components/attachments.twig' %}
+			{% endblock %}
+
 			{% block footer %}
 				{% include 'components/footer.twig' %}
 			{% endblock %}
-
 		</div>
 	</body>
 </html>

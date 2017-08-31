@@ -21,15 +21,16 @@
 			}
 		%}
 
-		{% for eveniment in zi %}
+		{% for instanta_eveniment in zi %}
 			<div>
-				<p>{{ eveniment.ora_inceput | date("H:i") }} — {{ eveniment.ora_sfarsit | date("H:i") }}</p>
+				<p>{{ instanta_eveniment.ora_inceput | date("H:i") }} — {{ instanta_eveniment.ora_sfarsit | date("H:i") }}</p>
 				{% 
 					include 'tease/tease-eveniment.twig' with {
-						'post': eveniment.eveniment
+						'post': instanta_eveniment.eveniment,
+						'loc': instanta_eveniment.loc
 					}
 				%}
-				<p><a href='{{eveniment.biletmaster}}' target='_blank'>Bilete</a></p>
+				<p><a href='{{instanta_eveniment.biletmaster}}' target='_blank'>Bilete</a></p>
 			</div>
 		{% endfor %}
 		</div>
