@@ -1,0 +1,10 @@
+<div class='eveniment__artists'>
+	<h3>{{__("Despre artiști", "TDI")}}</h3>
+	{% for artist in eveniment_artisti %}
+		{% 
+			include 'tease/tease-artist.twig' with {
+				'post': artist
+			}
+		%}
+	{% endfor %}
+</div>

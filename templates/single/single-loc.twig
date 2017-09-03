@@ -19,12 +19,20 @@
 
 	{% if evenimente %}
 	<h2>Evenimente la {{post.title}}</h2>
-	{% for eveniment in evenimente %}
-		{% 
-			include 'tease/tease-eveniment.twig' with {
-				'post': eveniment
-			}
-		%}
+	<div class='container-fluid'>
+	{% for row in evenimente | batch(3) %}
+		<div class='row'>
+		{% for eveniment in row %}
+			<div class='col-sm-4'>
+			{% 
+				include 'tease/tease-eveniment.twig' with {
+					'post': eveniment
+				}
+			%}
+			</div>
+		{% endfor %}
+		</div>
 	{% endfor %}
+	</div>
 	{% endif %}
 {% endblock %}

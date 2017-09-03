@@ -1,5 +1,6 @@
 <div class='tease-loc tease-loc--compact'>
 	<h4 class='tease-loc__title'><a href='{{loc.link}}'>{{ loc.title }}</a></h4>
+	{% if not hide_address %}
 	<div class='tease-loc__adress'>
 	{% if loc.coordonate %}
 		<a href='http://www.google.com/maps/place/{{ loc.coordonate.lat }},{{ loc.coordonate.lng }}' target='_blank'>
@@ -9,4 +10,5 @@
 		{{ loc.adress }}
 	{% endif %}
 	</div>
+	{% endif %}
 </div>

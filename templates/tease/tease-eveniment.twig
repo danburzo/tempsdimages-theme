@@ -9,7 +9,8 @@
 	{% endif %}
 	{% 
 		include 'tease/tease-loc-compact.twig' with {
-			'loc': loc
+			'loc': loc,
+			'hide_address': true
 		}
 	%}
 	<p>{{ post.excerpt }}</p>

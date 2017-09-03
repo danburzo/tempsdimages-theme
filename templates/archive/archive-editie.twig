@@ -1,13 +1,22 @@
 {% extends "base.twig" %}
 
 {% block content %}
-	{% for post in posts %}
-		{% 
-			include 'tease/tease-editie.twig' with {
-				'post': post
-			}
-		%}
+
+	<div class='container-fluid'>
+	{% for row in posts | batch(3) %}
+		<div class='row'>
+		{% for post in row %}
+			<div class='col-md-4'>
+			{% 
+				include 'tease/tease-editie.twig' with {
+					'post': post
+				}
+			%}
+			</div>
+		{% endfor %}
+		</div>
 	{% endfor %}
+	</div>
 
 	{% include 'components/pagination.twig' %}
 {% endblock %}

@@ -1,0 +1,31 @@
+<div class='eveniment__meta'>
+	<div class='eveniment__metaitem'>
+		{% 
+			include 'tease/tease-loc-compact.twig' with {
+				'loc': post.get_field('loc')
+			}
+		%}
+	</div>
+
+	{% set pret_bilet = post.get_field('pret_bilet') %}
+	{% set durata = post.get_field('durata') %}
+	{% set limba = post.get_field('limba') %}
+
+	{% if pret_bilet %}
+	<div class='eveniment__metaitem'>
+		<strong>{{__("Preț", "TDI")}}</strong> {{ __(pret_bilet, "TDI") }}
+	</div>
+	{% endif %}
+
+	{% if durata %}
+	<div class='eveniment__metaitem'>
+		<strong>{{__("Durată", "TDI")}}</strong> {{ durata }}′
+	</div>
+	{% endif %}
+
+	{% if limba %}
+	<div class='eveniment__metaitem'>
+		<strong>{{__("Limbă", "TDI")}}</strong> {{ limba }}
+	</div>
+	{% endif %}
+</div>

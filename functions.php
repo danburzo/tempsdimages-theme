@@ -73,6 +73,7 @@ class TDISite extends TimberSite {
 		
 		$context['site'] = $this;
 		$context['is_home'] = is_home() || is_front_page();
+		$context['is_logged_in'] = is_user_logged_in();
 
 		$context['options'] = get_fields('option');
 

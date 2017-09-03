@@ -1,0 +1,9 @@
+<div class='eveniment__calendar'>
+	{% for instance in post.get_field('calendar') %}
+		{% 
+			include 'tease/tease-eveniment-instance.twig' with {
+				'instance': instance
+			}
+		%}
+	{% endfor %}
+</div>

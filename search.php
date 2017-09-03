@@ -11,7 +11,7 @@
 
 $context = Timber::get_context();
 
-$context['title'] = 'Search results for '. get_search_query();
+$context['title'] = __('Rezultate pentru: ', "TDI") . "<em>" . get_search_query() . "</em>";
 $context['posts'] = Timber::get_posts();
 
 $templates = array( 'search.twig', 'archive.twig', 'index.twig' );
