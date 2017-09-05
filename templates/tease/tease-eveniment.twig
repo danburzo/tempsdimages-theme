@@ -1,6 +1,8 @@
 <div class='tease-eveniment'>
 	{% if post.thumbnail %}
-		<img src='{{post.thumbnail.src | tease_size }}'/>
+		<a href='{{post.link}}' title='{{ post.title }}'>
+			<img src='{{post.thumbnail.src | tease_size }}' alt='{{ post.title }}'/>
+		</a>
 	{% endif %}
 	<div class='tease-eveniment__category'><span>{{ post.get_field('categorie') }}</span></div>
 	<h2><a href='{{post.link}}'>{{ post.title }}</a></h2>
