@@ -1,23 +1,33 @@
 {% if prev or next %}
-<div class='pagination pagination--post'>
-	{% if prev %}
-	<a href="{{prev.link}}" class="pagination__item pagination__item--prev">
-		&larr; {{prev.title}}
-	</a>
-	{% else %}
-	<span class='pagination__item pagination__item--prev pagination__item--inactive'>
-		&larr;
-	</span>
-	{% endif %}
+<div class='pagination pagination--post container-fluid'>
+	<div class='row'>
+		<div class='col-sm-6'>
+			{% if prev %}
+			<a href="{{prev.link}}" class="pagination__item pagination__item--prev">
+				&larr; 
+				<h2>{{prev.title}}</h2>
+				<p>{{prev.date}}</p>
+			</a>
+			{% else %}
+			<span class='pagination__item pagination__item--prev pagination__item--inactive'>
+				&larr;
+			</span>
+			{% endif %}
+		</div>
 
-	{% if next %}
-	<a href="{{next.link}}" class="pagination__item pagination__item--next">
-		{{next.title}} &rarr;
-	</a>
-	{% else %}
-	<span class='pagination__item pagination__item--next pagination__item--inactive'>
-		&rarr;
-	</span>
-	{% endif %}
+		<div class='col-sm-6'>
+			{% if next %}
+			<a href="{{next.link}}" class="pagination__item pagination__item--next">
+				&rarr;
+				<h2>{{next.title}}</h2>
+				<p>{{next.date}}</p>
+			</a>
+			{% else %}
+			<span class='pagination__item pagination__item--next pagination__item--inactive'>
+				&rarr;
+			</span>
+			{% endif %}
+		</div>
+	</div>
 </div>
 {% endif %}

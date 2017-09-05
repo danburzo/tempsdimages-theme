@@ -65,6 +65,7 @@ nav ul {
 
 footer {
 	padding: 1em 0 0;
+	margin: 2em 0 0;
 	/*border-top: 0.25em solid #c06;*/
 }
 
@@ -183,8 +184,9 @@ input, textarea, select {
 /* Component: footer */
 
 .footer {
-	border-top: 0.2em solid #000;
-	padding: 1em 0;
+	padding: 2em 0;
+	background: #f0f0f0;
+	color: #555;
 }
 
 /* 
@@ -348,7 +350,6 @@ input, textarea, select {
 
 .pagination {
 	padding: 1em 0;
-	border-top: 2px solid #000;
 }
 
 .pagination--post {}
@@ -398,4 +399,14 @@ input, textarea, select {
 	background-size: contain;
 	background-repeat: no-repeat;
 	color: transparent !important;
+}
+
+/* Component: Post */
+
+.post__header {
+	margin: 1.5em 0;
+}
+
+.post__content {
+	font-size: 1.2em;
 }
