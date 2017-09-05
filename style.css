@@ -89,7 +89,24 @@ input, textarea, select {
 	margin-bottom: 2em;
 }
 
-.header__logo {}
+.header__logo {
+
+}
+
+.header__logo a {
+	display: block;
+	width: 4em;
+	height: 3em;
+	background-image: url('./static/svg/logos/tdi.svg');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center center;
+	margin: 0 auto;
+}
+
+.header__logo a span {
+	display: none;
+}
 
 .header__mainnav {
 	font-family: 'acumin-pro-condensed', Helvetica, Arial, sans-serif;
