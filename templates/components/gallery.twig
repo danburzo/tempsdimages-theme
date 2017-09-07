@@ -2,14 +2,12 @@
 
 {% if gallery_post %}
 
-	hello
-
-
 	{% set photo_gallery = gallery_post.get_field('galerie') %}
 
-
-
 	{% if photo_gallery %}
+
+		{{ enqueue_script('gallery') }}
+
 		<div class='gallery'>
 			<a href='#' data-galleria-role='nav-next'>
 				<svg width='20' height='20' viewBox='0 0 20 20'>

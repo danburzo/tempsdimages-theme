@@ -1,0 +1,14 @@
+{% if editie %}
+	<header class='header'>
+		<h1><a href='{{editie.link}}'>{{editie.title}}</a></h1>
+		{% if editie_menu %}
+			<nav class='header__nav header__nav--secondary'>
+			{% 
+				include 'components/menu.twig' with {
+					'menu': editie_menu.get_items
+				}
+			%}
+			</nav>
+		{% endif %}
+	</header>
+{% endif %}

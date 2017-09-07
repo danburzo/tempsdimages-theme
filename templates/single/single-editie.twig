@@ -1,16 +1,17 @@
-{% extends 'single/single.twig' %}
+{% extends 'base.twig' %}
 
 {% block content %}
 
-	<nav class='nav--secondary'>
-	{% 
-		include 'components/menu.twig' with {
-			'menu': editie_menu.get_items
-		}
-	%}
-	<nav>
+	{% block editie_header %}
+		{% include 'components/header-editie.twig' %}
+	{% endblock %}
 
-	<h1>{{post.title}}</h1>
-	<div>{{post.content}}</div>
+	{% block editie_title %}
+		<h1>{{post.title}}</h1>
+	{% endblock %}
+
+	{% block editie_content %}
+		<div>{{post.content}}</div>
+	{% endblock %}
 
 {% endblock %}

@@ -17,6 +17,11 @@
 		array_unshift( $templates, 'archive/archive-' . get_query_var( 'cat' ) . '.twig' );
 	} else if ( is_post_type_archive() ) {
 		$context['title'] = post_type_archive_title( '', false );
-		array_unshift( $templates, 'archive/archive-' . get_post_type() . '.twig' );
+		$post_type = get_post_type();
+		array_unshift( $templates, 'archive/archive-' . $post_type . '.twig' );
+		$post_type_include = $context_base . 'archive-' . $post_type . '.php';
+		if (file_exists($post_type_include)) {
+			include($post_type_include);
+		}
 	}
 ?>

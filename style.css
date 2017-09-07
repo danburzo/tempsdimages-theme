@@ -109,18 +109,18 @@ input, textarea, select {
 	display: none;
 }
 
-.header__mainnav {
+.header__nav {
 	font-family: 'acumin-pro-condensed', Helvetica, Arial, sans-serif;
 	/*font-weight: 700;*/
 	font-size: 1.2em;
 	margin: 1em 0;
 }
 
-.header__mainnav a {
+.header__nav a {
 	color: #777;
 }
 
-.header__mainnav li {
+.header__nav li {
 	display: inline-block;
 	margin: 0 0.75em;
 }

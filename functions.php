@@ -51,6 +51,8 @@ class TDISite extends TimberSite {
 
 		add_filter('acf/fields/google_map/api', array( $this, 'my_acf_google_map_api' ));
 
+		add_action('wp_enqueue_scripts', array( $this, 'register_scripts' ));
+
 		parent::__construct();
 	}
 
@@ -98,6 +100,18 @@ class TDISite extends TimberSite {
 		$twig->addExtension( new Twig_Extension_StringLoader() );
 		$twig->addFilter('hostname', new Twig_SimpleFilter('hostname', array($this, 'extract_hostname')));
 		$twig->addFilter('tease_size', new Twig_SimpleFilter('tease_size', array($this, 'tease_size')));
+
+
+		$function = new Twig_SimpleFunction('enqueue_script', function ($handle) {
+			wp_enqueue_script($handle);
+		});
+		$twig->addFunction($function);
+		
+		$function = new Twig_SimpleFunction('enqueue_style', function ($handle) {
+			wp_enqueue_style($handle);
+		});
+		$twig->addFunction($function);
+
 		return $twig;
 	}
 
@@ -365,50 +379,11 @@ class TDISite extends TimberSite {
 		$api['key'] = 'AIzaSyDYmP_uzYH2oq6kqPQJo3vDkufYaqJ6sLw';
 		return $api;
 	}
+
+	function register_scripts() {
+		wp_register_script('galleria', get_template_directory_uri() . '/static/js/galleria.js');
+		wp_register_script('gallery', get_template_directory_uri() . '/static/js/Gallery.js', array('galleria'));
+	}
 }
-
-// class TDIEvent extends TimberPost {
-
-// 	var $_calendar;
-// 	var $_occurrences;
-		
-// 	function get_first_occurrence() {
-// 		if (!$this->_calendar) {
-// 			$this->calendar = $this->get_field('calendar');
-// 		}
-
-// 		if (!$this->_occurrences) {
-// 			$this->_occurrences = $this->calendar;
-// 			uasort($this->_occurrences, array($this, '_sort_occurrences_by_date_and_time'));
-// 		}
-
-// 		return $this->_occurrences[0];
-// 	}
-
-// 	function _sort_occurrences_by_date_and_time($a, $b) {
-// 		$date_a = new DateTime($a['data_inceput']);
-// 		$date_b = new DateTime($b['data_inceput']);
-// 		$time_a = new DateTime($a['ora_inceput']);
-// 		$time_b = new DateTime($b['ora_inceput']);
-
-// 		if ($date_a > $date_b) {
-// 			return 1;
-// 		}
-
-// 		if ($date_a < $date_b) {
-// 			return -1;
-// 		}
-
-// 		if ($time_a > $time_b) {
-// 			return 1;
-// 		}
-
-// 		if ($time_a < $time_b) {
-// 			return -1;
-// 		}
-
-// 		return 0;
-// 	}
-// }
 
 new TDISite();
