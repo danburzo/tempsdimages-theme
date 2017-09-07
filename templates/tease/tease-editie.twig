@@ -1,7 +1,7 @@
 <div class='tease-editie'>
 	{% if post.thumbnail %}
-		<img src='{{post.thumbnail.src | tease_size }}'/>
+		<a href='{{post.link}}'><img src='{{post.thumbnail.src | tease_size }}'/></a>
 	{% endif %}
 	<h3 class='tease-editie__title'><a href='{{post.link}}'>{{ post.title }}</a></h3>
-	<p class='tease-editie__excerpt'>{{ post.post_excerpt }}</p>
+	<p class='tease-editie__tagline'>{{ post.get_field('tagline') }}</p>
 </div>

@@ -1,0 +1,36 @@
+{% set gallery_post = post.get_field('galerie') %}
+
+{% if gallery_post %}
+
+	hello
+
+
+	{% set photo_gallery = gallery_post.get_field('galerie') %}
+
+
+
+	{% if photo_gallery %}
+		<div class='gallery'>
+			<a href='#' data-galleria-role='nav-next'>
+				<svg width='20' height='20' viewBox='0 0 20 20'>
+					<polyline points='2,2 5,2 13,10 5,18 2,18 10,10'></polyline>
+				</svg>
+			</a>
+			<a href='#' data-galleria-role='nav-prev'>
+				<svg width='20' height='20' viewBox='0 0 20 20'>
+					<polyline points='18,2 15,2 7,10 15,18 18,18 10,10'></polyline>
+				</svg>
+			</a>
+			<div data-galleria-role='viewport'>
+				<div data-galleria-role='slider'>
+					{% for image in photo_gallery %}
+					<figure data-galleria-role='item'>
+					    <img src="{{ TimberImage(image).src }}"/>
+					    <figcaption>{{image.caption}}</figcaption>
+					</figure>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	{% endif %}
+{% endif %}

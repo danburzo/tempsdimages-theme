@@ -49,6 +49,8 @@ class TDISite extends TimberSite {
 			));
 		}
 
+		add_filter('acf/fields/google_map/api', array( $this, 'my_acf_google_map_api' ));
+
 		parent::__construct();
 	}
 
@@ -357,6 +359,11 @@ class TDISite extends TimberSite {
 			'posts_per_page' => -1
 		);
 		return $obj;
+	}
+
+	function my_acf_google_map_api( $api ) {
+		$api['key'] = 'AIzaSyDYmP_uzYH2oq6kqPQJo3vDkufYaqJ6sLw';
+		return $api;
 	}
 }
 

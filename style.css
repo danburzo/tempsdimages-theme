@@ -218,6 +218,40 @@ input, textarea, select {
 	text-transform: capitalize;
 }
 
+.tease-eveniment__thumb {
+	overflow: hidden;
+	display: block;
+	background-color: #f0f0f0;
+	position: relative;
+}
+
+.tease-eveniment__thumb:after {
+	content: ' ';
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(255,200,200,0.2);
+}
+
+.tease-eveniment__thumb img {
+	filter: grayscale(100%);
+	opacity: 0.75;
+	transition: all 0.3s;
+}
+
+.tease-eveniment:hover .tease-eveniment__thumb img {
+	filter: grayscale(0%);
+	opacity: 1;
+	transform: scale(1.05);
+}
+
+/* Component: Tease post */
+
+.tease--post {
+	margin: 1.5em 0;
+}
 
 /* Component: Tease Eveniment instance */
 

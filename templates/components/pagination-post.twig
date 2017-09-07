@@ -6,7 +6,7 @@
 			<a href="{{prev.link}}" class="pagination__item pagination__item--prev">
 				&larr; 
 				<h2>{{prev.title}}</h2>
-				<p>{{prev.date}}</p>
+				<p>{{prev.date | date("d—m—Y")}}</p>
 			</a>
 			{% else %}
 			<span class='pagination__item pagination__item--prev pagination__item--inactive'>
@@ -20,7 +20,7 @@
 			<a href="{{next.link}}" class="pagination__item pagination__item--next">
 				&rarr;
 				<h2>{{next.title}}</h2>
-				<p>{{next.date}}</p>
+				<p>{{next.date | date("d—m—Y")}}</p>
 			</a>
 			{% else %}
 			<span class='pagination__item pagination__item--next pagination__item--inactive'>

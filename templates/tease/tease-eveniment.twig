@@ -1,7 +1,7 @@
 <div class='tease-eveniment'>
 	{% if post.thumbnail %}
-		<a href='{{post.link}}' title='{{ post.title }}'>
-			<img src='{{post.thumbnail.src | tease_size }}' alt='{{ post.title }}'/>
+		<a href='{{post.link}}' title='{{ post.title }}' class='tease-eveniment__thumb'>
+			<img src='{{post.thumbnail.src | tease_size }}' alt='{{ post.title }}'>
 		</a>
 	{% endif %}
 	<div class='tease-eveniment__category'><span>{{ post.get_field('categorie') }}</span></div>

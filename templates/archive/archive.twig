@@ -1,11 +1,13 @@
 {% extends "base.twig" %}
 
 {% block content %}
+	<div class='container-fluid'>
 	{% for post in posts %}
 		{% 
 			include 'tease/tease-post.twig'
 		%}
 	{% endfor %}
+	</div>
 
 	{% include 'components/pagination.twig' %}
 {% endblock %}
