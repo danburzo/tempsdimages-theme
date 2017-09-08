@@ -262,6 +262,13 @@ input, textarea, select {
 .tease-artist__name {}
 .tease-artist__bio {}
 
+/* Component: Tease eveniment instance */
+
+.tease-eveniment-instance {
+	padding: 0.5em 0;
+	border-bottom: 1px solid #ccc;
+}
+
 
 /* Component: Calendar dayselect */
 
@@ -403,6 +410,29 @@ input, textarea, select {
 	margin: 1.5em 0;
 }
 
+.eveniment__header img {
+	display: block;
+	width: 100%;
+	margin-bottom: 1.5em;
+}
+
+.eveniment__title {}
+
+.eveniment__byline {
+	font-family: 'acumin-pro-condensed', Helvetica, Arial, sans-serif;
+	font-size: 1.4em;
+	margin: 0.5em 0;
+	color: #777;
+}
+
+.eveniment__category {
+	text-transform: uppercase;
+}
+
+.eveniment__category:after {
+	content: ' — ';
+}
+
 .eveniment__content {
 	font-size: 1.2em;
 }
@@ -423,6 +453,10 @@ input, textarea, select {
 	margin-right: 0.25em;
 }
 
+.eveniment__calendar {
+	margin-top: 1.5em;
+}
+
 .comingsoon {
 	position: absolute;
 	top: 0;
@@ -439,6 +473,10 @@ input, textarea, select {
 
 .post__header {
 	margin: 1.5em 0;
+}
+
+.post__title {
+	margin: 1em 0;
 }
 
 .post__content {

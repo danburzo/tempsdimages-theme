@@ -89,6 +89,8 @@ class TDISite extends TimberSite {
 
 		$context['options'] = get_fields('option');
 
+		$context['default_thumbnail'] = get_template_directory_uri() . '/static/svg/default-thumbnail.svg';
+
 		// add the WPML languages
 		if (function_exists('icl_get_languages')) {
 			$context['languages'] = icl_get_languages('skip_missing=0&orderby=code');
@@ -100,6 +102,7 @@ class TDISite extends TimberSite {
 		$twig->addExtension( new Twig_Extension_StringLoader() );
 		$twig->addFilter('hostname', new Twig_SimpleFilter('hostname', array($this, 'extract_hostname')));
 		$twig->addFilter('tease_size', new Twig_SimpleFilter('tease_size', array($this, 'tease_size')));
+		$twig->addFilter('full_size', new Twig_SimpleFilter('full_size', array($this, 'full_size')));
 
 
 		$function = new Twig_SimpleFunction('enqueue_script', function ($handle) {
@@ -125,6 +128,10 @@ class TDISite extends TimberSite {
 
 	function tease_size($src) {
 		return Timber\ImageHelper::resize($src, 1400, 933, 'center');
+	}
+
+	function full_size($src) {
+		return Timber\ImageHelper::resize($src, 1920, 1280, 'center');
 	}
 
 	/* Custom post types */
@@ -278,20 +285,23 @@ class TDISite extends TimberSite {
 	}
 
 	function get_editie($post) {
-		$ancestors = array_reverse(get_post_ancestors($post->ID));
 		if ($post->post_type == 'editie') {
+			$ancestors = array_reverse(get_post_ancestors($post->ID));
 			array_push($ancestors, $post->ID);
+			if (count($ancestors)) {
+				if ($ancestors[0] == $post->ID) {
+					return $post;
+				}
+
+				$top_ancestor = get_post($ancestors[0]);
+				if ($top_ancestor->post_type == 'editie') {
+					return new TimberPost($top_ancestor);
+				}
+			}
 		}
-		if (count($ancestors)) {
 
-			if ($ancestors[0] == $post->ID) {
-				return $post;
-			}
-
-			$top_ancestor = get_post($ancestors[0]);
-			if ($top_ancestor->post_type == 'editie') {
-				return new TimberPost($top_ancestor);
-			}
+		if ($post->post_type == 'eveniment') {
+			return $post->get_field('editie');
 		}
 	}
 

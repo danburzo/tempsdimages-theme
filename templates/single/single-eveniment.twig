@@ -4,20 +4,27 @@
 
 {% block content %}
 
-	<div class='container-fluid'>
-		{% if post.thumbnail %}
-			<img src='{{TimberImage(post.thumbnail.src)}}'/>
-		{% endif %}
+	{% block editie_header %}
+		{% include 'components/header-editie.twig' %}
+	{% endblock %}
 
+	<div class='container-fluid'>
 		<div class='eveniment__header'>
-			<h1>{{ post.title }}</h1>
-			<div>
-				{% for artist in eveniment_artisti %}
-					{{ artist.title }}{% if not loop.last %}, {% endif %}
-				{% endfor %}
+
+			{% if post.thumbnail %}
+				<img src='{{TimberImage(post.thumbnail.src) | full_size }}'/>
+			{% endif %}
+
+			<h1 class='eveniment__title'>{{ post.title }}</h1>
+
+			<div class='eveniment__byline'>
+				<span class='eveniment__category'>{{ post.get_field('categorie') }}</span>
+				<span class='eveniment__artists'>
+					{% for artist in eveniment_artisti %}
+						{{ artist.title }}{% if not loop.last %}, {% endif %}
+					{% endfor %}
+				</span>
 			</div>
-			<div> {{ post.get_field('categorie') }} </div>
-			{% include 'components/edit-link.twig' %}
 		</div>
 	</div>
 
@@ -35,9 +42,6 @@
 				</div>
 
 				{% include 'components/eveniment-artists.twig' %}
-
-				<h2>Calendar</h2>
-				{% include 'components/eveniment-calendar.twig' %}
 				
 			</div>
 			<div class='col-md-4'>

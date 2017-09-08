@@ -1,7 +1,19 @@
 <div class='tease-eveniment-instance'>
-	<p>{{ instance.data_inceput }} — {{ instance.data_sfarsit }}</p>
-	<p>{{ instance.ora_inceput }} — {{ instance.ora_sfarsit }}</p>
+	<div class='evenimentinstance__datetime'>
+		<span class='evenimentinstance__date'>
+			{% if instance.data_inceput == instance.data_sfarsit %}
+				{{ instance.data_inceput | date("d—m—Y") }}
+			{% else %}
+				{{ instance.data_inceput | date("d—m—Y") }} — {{ instance.data_sfarsit | date("d—m—Y") }}
+			{% endif %}
+		</span>, <span class='evenimentinstance__time'>
+			{{ instance.ora_inceput | date("H:i") }} — {{ instance.ora_sfarsit | date("H:i") }}
+		</span>
+	</div>
+
 	{% if instance.biletmaster %}
-		<a href='{{instance.biletmaster}}' target='_blank'>{{__("Cumpără bilete", "TDI")}}</a>
+		<div class='evenimentinstance__tickets'>
+			<a href='{{instance.biletmaster}}' target='_blank'>{{__("Cumpără bilete", "TDI")}}</a>
+		</div>
 	{% endif %}
 </div>
