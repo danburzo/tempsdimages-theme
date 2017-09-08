@@ -1,18 +1,26 @@
 {% extends "tease/tease.twig" %}
 
 {% block content %}
-	<div class='row tease--post'>
+	<div class='tease--post'>
 		
-		<div class='col-md-8'>
-			<h2><a href="{{post.link}}">{{post.title}}</a></h2>
-			<p>{{ post.post_date | date("d—m—Y") }}</p>
-			<p>{{ post.get_preview(50) }}</p>
+		<div class='tease__date'>{{ post.post_date | date("d—m—Y") }}</div>
+		
+		<a class='tease__thumb' href='{{post.link}}' title='{{ post.title }}'>
+			{% if post.thumbnail %}
+				<img src='{{post.thumbnail.src | tease_size }}' alt='{{ post.title }}'/>
+			{% else %}
+				<img src='{{ default_thumbnail }}' alt='{{ post.title }}'/>
+			{% endif %}
+		</a>
+
+
+		<h2 class='tease__title'>
+			<a href="{{post.link}}">{{post.title}}</a>
+		</h2>
+		
+		<div class='tease__excerpt'>
+			{{ post.get_preview(50) }}
 		</div>
 
-		<div class='col-md-4'>
-			{% if post.thumbnail.src %}
-				<a href="{{post.link}}"><img src="{{post.thumbnail.src}}" /></a>
-			{% endif %}
-		</div>
 	</div>
 {% endblock %}

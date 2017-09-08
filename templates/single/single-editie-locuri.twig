@@ -1,11 +1,16 @@
 {% extends 'single/single-editie.twig' %}
 
 {% block editie_content %}
-	{% for loc in locuri %}
-		{% 
-			include 'tease/tease-loc.twig' with {
-				'post': loc
-			}
-		%}
-	{% endfor %}
+
+	{% if locuri | length %}
+		{% for loc in locuri %}
+			{% 
+				include 'tease/tease-loc.twig' with {
+					'post': loc
+				}
+			%}
+		{% endfor %}
+	{% else %}
+		<p>{{__("Nu există încă locuri adăugate pentru această ediție", "TDI")}}</p>
+	{% endif %}
 {% endblock %}

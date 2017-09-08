@@ -1,23 +1,35 @@
 <div class='tease-eveniment'>
-	
+
+	<div class='tease-eveniment__category'>
+		{{ post.get_field('categorie') | default('&nbsp;') }}
+	</div>
+
 	<a href='{{post.link}}' title='{{ post.title }}' class='tease-eveniment__thumb'>
 		{% if post.thumbnail %}
-			<img src='{{post.thumbnail.src | tease_size }}' alt='{{ post.title }}'>
+			<img src='{{post.thumbnail.src | tease_size }}' alt='{{ post.title }}'/>
 		{% else %}
 			<img src='{{ default_thumbnail }}' alt='{{ post.title }}'/>
 		{% endif %}
 	</a>
-	
-	<div class='tease-eveniment__category'><span>{{ post.get_field('categorie') }}</span></div>
-	<h2><a href='{{post.link}}'>{{ post.title }}</a></h2>
-	{% if not loc %}
-		{% set loc = post.get_field('loc') %}
-	{% endif %}
-	{% 
-		include 'tease/tease-loc-compact.twig' with {
-			'loc': loc,
-			'hide_address': true
-		}
-	%}
-	<p>{{ post.excerpt }}</p>
+
+	<h2 class='tease-eveniment__title'>
+		<a href='{{post.link}}'>{{ post.title }}</a>
+	</h2>
+
+	<div class='tease-eveniment__loc'>
+		{% if not loc %}
+			{% set loc = post.get_field('loc') %}
+		{% endif %}
+		
+		{% 
+			include 'tease/tease-loc-compact.twig' with {
+				'loc': loc,
+				'hide_address': true
+			}
+		%}
+	</div>
+
+	<div class='tease-eveniment__desc'>
+		{{ post.excerpt }}
+	</div>
 </div>

@@ -1,9 +1,22 @@
 <footer class='footer'>
 	<div class='container'>
-		<p>Temps D'Images &copy; 2008 — 2017</p>
-		{{ function('wp_footer') }}
+    <div class='row'>
+      <div class='col col-md-8'>
+        <p>Temps D’Images &copy; 2008 — 2017</p>
+      </div>
+      <div class='col col-md-4'>
+        <nav class='header__social'>
+          {% 
+            include "components/menu.twig" with {
+              'menu': top_menu.get_items
+            } 
+          %}
+        </nav>
+      </div>
 	</div>
 </footer>
+
+{{ function('wp_footer') }}
 
 <!-- Google Analytics -->
 <script>

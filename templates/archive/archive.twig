@@ -2,10 +2,16 @@
 
 {% block content %}
 	
-	{% for post in posts %}
-		{% 
-			include 'tease/tease-post.twig'
-		%}
+	{% for row in posts | batch(3) %}
+	<div class='row row--spaced'>
+		{% for post in row %}
+		<div class='col-md-4'>
+			{% 
+				include 'tease/tease-post.twig'
+			%}
+		</div>
+		{% endfor %}
+	</div>
 	{% endfor %}
 
 	{% include 'components/pagination.twig' %}

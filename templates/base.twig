@@ -7,21 +7,21 @@
 		{% endblock %}
 	</head>
 	<body class="{{body_class}}">
-
-		<div class='tdi__page'>
-			
+		<div class='g__wrapper'>
 			{% block header %}
 				{% include 'components/header.twig' %}
 			{% endblock %}
 
-			<section role="main" class='container'>
-				{% if title %}
-					<h1>{{ title }}</h1>
-				{% endif %}
+			<section role="main">
+				<div class='container'>
+					{% if title %}
+						<h1>{{ title }}</h1>
+					{% endif %}
 
-				{% block content %}
-					Sorry, no content
-				{% endblock %}
+					{% block content %}
+						Sorry, no content
+					{% endblock %}
+				</div>
 			</section>
 
 			{% block attachments %}
@@ -31,10 +31,10 @@
 			{% block gallery %}
 				{% include 'components/gallery.twig' %}
 			{% endblock %}
-
-			{% block footer %}
-				{% include 'components/footer.twig' %}
-			{% endblock %}
 		</div>
+
+		{% block footer %}
+			{% include 'components/footer.twig' %}
+		{% endblock %}
 	</body>
 </html>

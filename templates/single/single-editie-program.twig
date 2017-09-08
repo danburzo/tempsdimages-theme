@@ -2,7 +2,7 @@
 
 {% block editie_content %}
 	{% for row in evenimente | batch(3) %}
-		<div class='row'>
+		<div class='row row--spaced'>
 		{% for eveniment in row %}
 			<div class='col-sm-4'>
 			{% 

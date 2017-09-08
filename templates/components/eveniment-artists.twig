@@ -3,7 +3,8 @@
 	{% for artist in eveniment_artisti %}
 		{% 
 			include 'tease/tease-artist.twig' with {
-				'post': artist
+				'post': artist,
+				'exclude_name': true
 			}
 		%}
 	{% endfor %}

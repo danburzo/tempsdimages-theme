@@ -27,7 +27,11 @@
 	</div>
 
 	<div class='row'>
-		<div class='col-md-8'>
+		<div class='col-md-4 push-md-8'>
+			{% include 'components/eveniment-meta.twig' %}
+		</div>
+
+		<div class='col-md-8 pull-md-4'>
 
 			<div class='eveniment__content'>
 				{{ post.content }}
@@ -39,9 +43,6 @@
 
 			{% include 'components/eveniment-artists.twig' %}
 			
-		</div>
-		<div class='col-md-4'>
-			{% include 'components/eveniment-meta.twig' %}
 		</div>
 	</div>
 

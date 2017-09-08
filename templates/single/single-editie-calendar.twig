@@ -13,7 +13,7 @@
 	</div>
 
 	{% for key, zi in zile %}
-		<div class='calendar__day row'>
+		<div class='calendar__day row row--spaced'>
 			<div class='col-md-3'>
 			{%
 				include 'components/calendar-dayheader.twig' with {
@@ -25,7 +25,7 @@
 			<div class='col-md-9'>
 
 			{% for row in zi | batch(3) %}
-				<div class='row'>
+				<div class='row row--spaced'>
 				{% for instanta_eveniment in row %}
 					<div class='col-md-4'>
 						<p>{{ instanta_eveniment.ora_inceput | date("H:i") }} — {{ instanta_eveniment.ora_sfarsit | date("H:i") }}</p>

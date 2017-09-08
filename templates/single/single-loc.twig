@@ -4,23 +4,30 @@
 {% set loc_coordonate = post.get_field('coordonate') %}
 
 {% block content %}
-	<h1>{{post.title}}</h1>
-	{% if loc_coordonate %}
-		<a href='http://www.google.com/maps/place/{{ loc_coordonate.lat }},{{ loc_coordonate.lng }}' target='_blank'>
-			{{ loc_adresa }}
-		</a>
-	{% else %}
-		{{ loc_adresa }}
-	{% endif %}
 
-	<div class=''>
+	<div class='post__header'>
+		<h1>{{post.title}}</h1>
+
+		<div class='post__byline'>
+			{{__("Adresa", "TDI")}}: 
+			{% if loc_coordonate %}
+				<a target='_blank' href='{{ gmaps(loc_coordonate) }}'>
+					{{ loc_adresa }}
+				</a>
+			{% else %}
+				{{ loc_adresa }}
+			{% endif %}
+		</div>
+	</div>
+
+	<div>
 		{{ post.content }}
 	</div>
 
 	{% if evenimente %}
 		<h2>Evenimente</h2>
 		{% for row in evenimente | batch(3) %}
-			<div class='row'>
+			<div class='row row--spaced'>
 			{% for eveniment in row %}
 				<div class='col-sm-4'>
 				{% 

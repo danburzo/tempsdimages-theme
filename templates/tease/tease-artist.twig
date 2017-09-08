@@ -1,4 +1,6 @@
 <div class='tease-artist'>
+	{% if not exclude_name %}
+		<h2 class='tease-artist__name'><a href='{{post.link}}'>{{post.title}}</a></h2>
+	{% endif %}
 	<div class='tease-artist__bio'>{{post.content}}</div>
-	{% include 'components/edit-link.twig' %}
 </div>

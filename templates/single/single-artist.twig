@@ -1,15 +1,33 @@
 {% extends 'single/single.twig' %}
 
 {% block content %}
-	<h1>{{post.title}}</h1>
-	<img src="{{TimberImage(post.profile_image).src}}">
-	<div>{{post.content}}</div>
+	<div class='post__header'>
+		<h1>{{post.title}}</h1>
+	</div>
 
-	{% if evenimente %}
-	<h2>Evenimentele artistului</h2>
-	{% for eveniment in evenimente %}
-		<h3><a href='{{eveniment.link}}'>{{eveniment.title}}</a></h3>
-		<p>{{eveniment.content}}</p>
-	{% endfor %}
+	<div class='row'>
+		<div class='col-md-8'>
+			<div class='post__content'>
+				{{post.content}}
+			</div>
+		</div>
+	</div>
+
+	{% if evenimente and evenimente | length %}
+		<h2>Evenimentele artistului</h2>
+
+		{% for row in evenimente | batch(3) %}
+			<div class='row row--spaced'>
+			{% for eveniment in row %}
+				<div class='col col-sm-4'>
+					{% 
+						include 'tease/tease-eveniment.twig' with {
+							'post': eveniment
+						}
+					%}
+				</div>
+			{% endfor %}
+			</div>
+		{% endfor %}
 	{% endif %}
 {% endblock %}

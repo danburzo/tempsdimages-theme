@@ -104,16 +104,17 @@ class TDISite extends TimberSite {
 		$twig->addFilter('tease_size', new Twig_SimpleFilter('tease_size', array($this, 'tease_size')));
 		$twig->addFilter('full_size', new Twig_SimpleFilter('full_size', array($this, 'full_size')));
 
-
-		$function = new Twig_SimpleFunction('enqueue_script', function ($handle) {
+		$twig->addFunction(new Twig_SimpleFunction('enqueue_script', function ($handle) {
 			wp_enqueue_script($handle);
-		});
-		$twig->addFunction($function);
-		
-		$function = new Twig_SimpleFunction('enqueue_style', function ($handle) {
+		}));
+
+		$twig->addFunction(new Twig_SimpleFunction('enqueue_style', function ($handle) {
 			wp_enqueue_style($handle);
-		});
-		$twig->addFunction($function);
+		}));
+
+		$twig->addFunction(new Twig_SimpleFunction('gmaps', function ($coords) {
+			return "http://www.google.com/maps/place/{$coords['lat']},{$coords['lng']}";
+		}));
 
 		return $twig;
 	}
