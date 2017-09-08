@@ -8,45 +8,40 @@
 		{% include 'components/header-editie.twig' %}
 	{% endblock %}
 
-	<div class='container-fluid'>
-		<div class='eveniment__header'>
+	<div class='eveniment__header'>
 
-			{% if post.thumbnail %}
-				<img src='{{TimberImage(post.thumbnail.src) | full_size }}'/>
-			{% endif %}
+		{% if post.thumbnail %}
+			<img src='{{TimberImage(post.thumbnail.src) | full_size }}'/>
+		{% endif %}
 
-			<h1 class='eveniment__title'>{{ post.title }}</h1>
+		<h1 class='eveniment__title'>{{ post.title }}</h1>
 
-			<div class='eveniment__byline'>
-				<span class='eveniment__category'>{{ post.get_field('categorie') }}</span>
-				<span class='eveniment__artists'>
-					{% for artist in eveniment_artisti %}
-						{{ artist.title }}{% if not loop.last %}, {% endif %}
-					{% endfor %}
-				</span>
-			</div>
+		<div class='eveniment__byline'>
+			<span class='eveniment__category'>{{ post.get_field('categorie') }}</span>
+			<span class='eveniment__artists'>
+				{% for artist in eveniment_artisti %}
+					{{ artist.title }}{% if not loop.last %}, {% endif %}
+				{% endfor %}
+			</span>
 		</div>
 	</div>
 
+	<div class='row'>
+		<div class='col-md-8'>
 
-	<div class='container-fluid'>
-		<div class='row'>
-			<div class='col-md-8'>
-
-				<div class='eveniment__content'>
-					{{ post.content }}
-				</div>
-
-				<div class='eveniment__credits'>
-					{{ post.get_field('credits') }}
-				</div>
-
-				{% include 'components/eveniment-artists.twig' %}
-				
+			<div class='eveniment__content'>
+				{{ post.content }}
 			</div>
-			<div class='col-md-4'>
-				{% include 'components/eveniment-meta.twig' %}
+
+			<div class='eveniment__credits'>
+				{{ post.get_field('credits') }}
 			</div>
+
+			{% include 'components/eveniment-artists.twig' %}
+			
+		</div>
+		<div class='col-md-4'>
+			{% include 'components/eveniment-meta.twig' %}
 		</div>
 	</div>
 

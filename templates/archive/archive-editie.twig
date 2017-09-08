@@ -2,7 +2,6 @@
 
 {% block content %}
 
-	<div class='container-fluid'>
 	{% for row in posts | batch(3) %}
 		<div class='row'>
 		{% for post in row %}
@@ -16,7 +15,6 @@
 		{% endfor %}
 		</div>
 	{% endfor %}
-	</div>
 
 	{% include 'components/pagination.twig' %}
 {% endblock %}

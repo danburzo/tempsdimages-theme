@@ -1,7 +1,6 @@
 {% extends 'single/single-editie.twig' %}
 
 {% block editie_content %}
-	<div class='container-fluid'>
 	{% for row in evenimente | batch(3) %}
 		<div class='row'>
 		{% for eveniment in row %}
@@ -15,5 +14,4 @@
 		{% endfor %}
 		</div>
 	{% endfor %}
-	</div>
 {% endblock %}

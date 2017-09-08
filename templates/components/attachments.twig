@@ -1,6 +1,6 @@
 {% set attachments = post.get_field('atasamente') %}
 {% if attachments and attachments | length %}
-	<div class='container-fluid'>
+	<div class='container'>
 		<div class='tdi__attachments-wrapper'>
 			{% for attachment in attachments %}
 			<a class='tdi__attachments-item' href='{{attachment.fisier.url}}' target="_blank">

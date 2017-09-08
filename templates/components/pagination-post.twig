@@ -1,6 +1,5 @@
 {% if prev or next %}
-<div class='pagination pagination--post container-fluid'>
-	<div class='row'>
+	<div class='pagination pagination--post row'>
 		<div class='col-sm-6'>
 			{% if prev %}
 			<a href="{{prev.link}}" class="pagination__item pagination__item--prev">
@@ -29,5 +28,4 @@
 			{% endif %}
 		</div>
 	</div>
-</div>
 {% endif %}

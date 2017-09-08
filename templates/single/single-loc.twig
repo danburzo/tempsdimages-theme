@@ -18,21 +18,19 @@
 	</div>
 
 	{% if evenimente %}
-	<h2>Evenimente</h2>
-	<div class='container-fluid'>
-	{% for row in evenimente | batch(3) %}
-		<div class='row'>
-		{% for eveniment in row %}
-			<div class='col-sm-4'>
-			{% 
-				include 'tease/tease-eveniment.twig' with {
-					'post': eveniment
-				}
-			%}
+		<h2>Evenimente</h2>
+		{% for row in evenimente | batch(3) %}
+			<div class='row'>
+			{% for eveniment in row %}
+				<div class='col-sm-4'>
+				{% 
+					include 'tease/tease-eveniment.twig' with {
+						'post': eveniment
+					}
+				%}
+				</div>
+			{% endfor %}
 			</div>
 		{% endfor %}
-		</div>
-	{% endfor %}
-	</div>
 	{% endif %}
 {% endblock %}
