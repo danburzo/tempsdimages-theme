@@ -1,11 +1,18 @@
 <footer class='footer'>
 	<div class='container'>
     <div class='row'>
-      <div class='col col-md-8'>
+      <div class='col-md-4'>
         <p>Temps D’Images &copy; 2008 — 2017</p>
       </div>
-      <div class='col col-md-4'>
-        <nav class='header__social'>
+      <div class='col-md-4'>
+        <h4>{{__("Newsletter", "TDI")}}</h4>
+        <form action="{{site.link}}" method="GET" class='newsletter'>
+          <input name="s" type="search" placeholder='{{__("Adresa de e-mail", "TDI")}}'>
+          <button type='submit' class='btn'>{{__("Abonează-te", "TDI")}}</button>
+        </form>
+      </div>
+      <div class='col-md-4'>
+        <nav class='footer__social'>
           {% 
             include "components/menu.twig" with {
               'menu': top_menu.get_items

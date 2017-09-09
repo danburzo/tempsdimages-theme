@@ -186,10 +186,22 @@ input, textarea, select {
 /* Component: footer */
 
 .footer {
-	padding: 2em 0;
+	padding: 3em 0;
 	color: #555;
-	padding: 1em 0 0;
-	margin: 2em 0 0;
+}
+
+.footer a {
+	color: inherit;
+	border-bottom: 1px solid #ccc;
+}
+
+.footer a:hover {
+	text-decoration: none;
+}
+
+.footer__social .menuitem {
+	display: inline-block;
+	margin: 0 0.5em;
 }
 
 /* 
@@ -336,37 +348,37 @@ input, textarea, select {
 
 /* Component: menu */
 
-.menuitem__icon {
+.header__social .menuitem__icon {
 	vertical-align: middle;
 	width: 1em;
 	height: 1em;
 	display: none;
 }
 
-.menuitem__icon--facebook-com {
+.header__social .menuitem__icon--facebook-com {
 	display: inline-block;
 	background-image: url('./static/svg/icons/facebook-white.svg');
 }
 
-.menuitem__icon--vimeo-com {
+.header__social .menuitem__icon--vimeo-com {
 	display: inline-block;
 	background-image: url('./static/svg/icons/vimeo-white.svg');
 }
 
-.menuitem__icon--issuu-com {
+.header__social .menuitem__icon--issuu-com {
 	display: inline-block;
 	background-image: url('./static/svg/icons/issuu-white.svg');
 }
 
-.menuitem__icon--biletmaster-ro {
+.header__social .menuitem__icon--biletmaster-ro {
 	display: inline-block;
 	background-image: url('./static/svg/icons/biletmaster-white.svg');
 }
 
-.menuitem__icon--facebook-com + .menuitem__label,
-.menuitem__icon--vimeo-com + .menuitem__label,
-.menuitem__icon--issuu-com + .menuitem__label,
-.menuitem__icon--biletmaster-ro + .menuitem__label {
+.header__social .menuitem__icon--facebook-com + .menuitem__label,
+.header__social .menuitem__icon--vimeo-com + .menuitem__label,
+.header__social .menuitem__icon--issuu-com + .menuitem__label,
+.header__social .menuitem__icon--biletmaster-ro + .menuitem__label {
 	display: none;
 }
 
@@ -403,6 +415,18 @@ input, textarea, select {
 
 .pagination {
 	padding: 1em 0;
+}
+
+.pagination__list {
+	list-style: none;
+}
+
+.pagination__list li {
+	display: inline-block;
+}
+
+.pagination__item {
+	padding: 1em;
 }
 
 .pagination--post {}
