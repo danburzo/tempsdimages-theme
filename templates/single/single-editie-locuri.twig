@@ -3,18 +3,24 @@
 {% block editie_content %}
 
 	{% if locuri | length %}
-		{% for loc in locuri %}
-			{% 
-				include 'tease/tease-loc.twig' with {
-					'post': loc
-				}
-			%}
+		{% for row in locuri | batch(3) %}
+			<div class='row row--spaced'>
+			{% for loc in row %}
+				<div class='col-md-4'>
+					{% 
+						include 'tease/tease-loc.twig' with {
+							'post': loc
+						}
+					%}
+				</div>
+			{% endfor %}
+			</div>
 		{% endfor %}
 
 		<h3>{{__("Hartă", "TDI")}}</h3>
 
 		{% include 'components/map.twig' %}
-		
+
 	{% else %}
 		<p>{{__("Nu există încă locuri adăugate pentru această ediție", "TDI")}}</p>
 	{% endif %}

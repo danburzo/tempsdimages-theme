@@ -271,12 +271,6 @@ input, textarea, select {
 	font-size: 0.9em;
 }
 
-/* Component: Tease post */
-
-.tease--post {
-	margin-bottom: 1.5em;
-}
-
 /* Component: Tease Eveniment instance */
 
 .tease-eveniment-instance {}
@@ -528,38 +522,39 @@ input, textarea, select {
 
 .gallery {
 	height: 0;
+	box-sizing: content-box;
 	padding-bottom: 66.66%;
 }
 
 .g__wrapper {
 	background: #fff;
+	padding-bottom: 3em;
 }
 
 
-
-.tease--post {
+.tease {
 	text-align: center;
 }
 
-.tease--post .tease__title {
+.tease__title {
 	font-size: 1.2em;
 	margin: 1em 0 0.5em;
 }
 
-.tease--post .tease__date {
+.tease__date {
 	padding: 0.5em 0;
 	color: #777;
 	font-size: 1.2em;
 }
 
-.tease--post .tease__thumb {
+.tease__thumb {
 	overflow: hidden;
 	display: block;
 	background-color: #f0f0f0;
 	position: relative;
 }
 
-.tease--post .tease__thumb:after {
+.tease__thumb:after {
 	content: ' ';
 	position: absolute;
 	top: 0;
@@ -569,19 +564,19 @@ input, textarea, select {
 	background: rgba(255,200,200,0.2);
 }
 
-.tease--post .tease__thumb img {
+.tease__thumb img {
 	filter: grayscale(100%);
 	opacity: 0.75;
 	transition: all 0.3s;
 }
 
-.tease--post:hover .tease__thumb img {
+.tease:hover .tease__thumb img {
 	filter: grayscale(0%);
 	opacity: 1;
 	transform: scale(1.05);
 }
 
-.tease--post .tease__excerpt {
+.tease__excerpt {
 	text-align: left;
 	font-size: 0.9em;
 }
@@ -590,5 +585,33 @@ input, textarea, select {
 /* Component: Map */
 
 .map {
-	height: 20em;
+	height: 0;
+	padding-bottom: 66%; /* 3/2 ratio */
+}
+
+/* Component: Attachments */
+
+.attachments {
+	border-top: 5px solid #eee;
+	font-size: 1.2em;
+	margin: 1.5em 0;
+	font-family: "acumin-pro-wide", Helvetica, Arial, sans-serif;
+	font-weight: 700;
+}
+
+.attachments__item {
+	padding: 1em;
+}
+
+.attachments__label, .attachments__icon {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.attachments__icon {
+	margin-right: 0.5em;
+}
+
+.attachments__icon svg {
+	display: block;
 }

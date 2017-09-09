@@ -6,6 +6,12 @@
 		{% include 'components/header-editie.twig' %}
 	{% endblock %}
 
+	<div class='post__image'>
+		{% if post.thumbnail %}
+			<img src='{{TimberImage(post.thumbnail.src) | full_size }}'/>
+		{% endif %}
+	</div>
+
 	{% block editie_title %}
 		<h1 class='post__title'>{{post.title}}</h1>
 	{% endblock %}

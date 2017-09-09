@@ -292,8 +292,15 @@ class TDISite extends TimberSite {
 				$query->set('post_parent', 0);
 			}
 
-			if ($query->query_vars['post_type'] == 'loc') {
+			$post_type = $query->query_vars['post_type'];
+
+			if ($post_type == 'loc') {
 				$query->set('posts_per_archive_page', -1);
+			}
+
+			if ($post_type === 'editie') {
+				$query->set('orderby', 'title');
+				$query->set('order', 'DESC');
 			}
 		}
 	}
