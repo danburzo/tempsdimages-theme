@@ -1,0 +1,29 @@
+{% if post.prev or post.next %}
+	<div class='pagination pagination--post row'>
+		<div class='col-sm-6'>
+			{% if post.prev %}
+			<a href="{{post.prev.link}}" class="pagination__item pagination__item--prev">
+				&larr; 
+				<h2>{{post.prev.title}}</h2>
+			</a>
+			{% else %}
+			<span class='pagination__item pagination__item--prev pagination__item--inactive'>
+				&larr;
+			</span>
+			{% endif %}
+		</div>
+
+		<div class='col-sm-6'>
+			{% if post.next %}
+			<a href="{{post.next.link}}" class="pagination__item pagination__item--next">
+				&rarr;
+				<h2>{{post.next.title}}</h2>
+			</a>
+			{% else %}
+			<span class='pagination__item pagination__item--next pagination__item--inactive'>
+				&rarr;
+			</span>
+			{% endif %}
+		</div>
+	</div>
+{% endif %}

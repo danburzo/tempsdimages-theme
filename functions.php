@@ -37,6 +37,15 @@ class TDISite extends TimberSite {
 		add_action( 'init', array( $this, 'register_shortcodes' ) );
 		add_action( 'pre_get_posts', array( $this, 'configure_get_posts' ) );
 
+		add_filter('get_next_post_join', array($this, 'configure_adjacent_post_join'), 10, 5);
+		add_filter('get_previous_post_join', array($this, 'configure_adjacent_post_join'), 10, 5);
+
+		add_filter('get_next_post_where', array($this, 'configure_next_post_where'), 10, 5);
+		add_filter('get_previous_post_where', array($this, 'configure_previous_post_where'), 10, 5);
+
+		add_filter('get_next_post_sort', array($this, 'configure_next_post_sort'), 10, 2);
+		add_filter('get_previous_post_sort', array($this, 'configure_previous_post_sort'), 10, 2);
+
 		add_filter( 'nav_menu_meta_box_object', array( $this, 'disable_pagination_in_menu_meta_box' ) );
 
 		if( function_exists('acf_add_options_page') ) {
@@ -322,7 +331,9 @@ class TDISite extends TimberSite {
 						'key' => 'editie',
 						'value' => $editie->ID
 					)
-				)
+				),
+				'orderby' => 'title',
+				'order' => 'ASC'
 			)
 		);
 	}
@@ -394,6 +405,72 @@ class TDISite extends TimberSite {
 	function register_scripts() {
 		wp_register_script('galleria', get_template_directory_uri() . '/static/js/galleria.js');
 		wp_register_script('gallery', get_template_directory_uri() . '/static/js/Gallery.js', array('galleria'));
+	}
+
+
+	/* 
+		Provide Previous/Next links to events in an edition.
+	*/
+
+	function configure_adjacent_post_join($join, $in_same_term, $excluded_terms, $taxonomy, $post = null) {
+		if (is_single() && $post && $post->post_type === 'eveniment') {
+			$meta_sql = $this->_get_editie_meta_query($post);
+			return $join . $meta_sql['join'];
+		}
+		return $join;
+	}
+
+	function configure_next_post_where($where, $in_same_term, $excluded_terms, $taxonomy, $post = null) {
+		if (is_single() && $post->post_type === 'eveniment') {
+			return $this->_adjacent_eveniment_where($post, '>');
+		}
+		return $where;
+	}
+
+	function configure_previous_post_where($where, $in_same_term, $excluded_terms, $taxonomy, $post = null) {
+		if (is_single() && $post->post_type === 'eveniment') {
+			return $this->_adjacent_eveniment_where($post, '<');
+		}
+		return $where;
+	}
+
+	function configure_next_post_sort($order, $post) {
+		if (is_single() && $post->post_type === 'eveniment') {
+			return $this->_adjacent_eveniment_order('ASC');
+		}
+		return $order;
+	}
+
+	function configure_previous_post_sort($order, $post) {
+		if (is_single() && $post->post_type === 'eveniment') {
+			return $this->_adjacent_eveniment_order('DESC');
+		}
+		return $order;
+	}
+
+
+	function _get_editie_meta_query($post) {
+		$meta_query = array(
+			array(
+				'key' => 'editie',
+				'value' => get_post_meta($post->ID, 'editie', true)
+			)
+		);
+		return get_meta_sql($meta_query, 'post', 'p', 'ID');
+	}
+
+	function _adjacent_eveniment_where($post, $order) {
+		$meta_sql = $this->_get_editie_meta_query($post);
+		global $wpdb;
+		return $wpdb->prepare(
+			"WHERE p.post_status = 'publish' AND p.post_type = %s AND lower(p.post_title) {$order} lower(%s)",
+			$post->post_type,
+			$post->post_title
+		) . $meta_sql['where'];
+	}
+
+	function _adjacent_eveniment_order($order) {
+		return "ORDER BY lower(p.post_title) {$order} LIMIT 1";
 	}
 }
 
