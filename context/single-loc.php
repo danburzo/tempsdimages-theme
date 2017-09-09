@@ -8,7 +8,9 @@
 					'key' => 'loc',
 					'value' => $post->ID
 				)
-			)
+			),
+			'orderby' => 'title',
+			'order' => 'ASC'
 		)
 	);
 ?>

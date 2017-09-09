@@ -600,7 +600,7 @@ input, textarea, select {
 }
 
 .attachments__item {
-	padding: 1em;
+	padding: 1em 0;
 }
 
 .attachments__label, .attachments__icon {

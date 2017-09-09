@@ -2,12 +2,12 @@
 	<div class='evenimentinstance__datetime'>
 		<span class='evenimentinstance__date'>
 			{% if instance.data_inceput == instance.data_sfarsit %}
-				{{ instance.data_inceput | date("d—m—Y") }}
+				{{ instance.data_inceput | date("l d/m/Y") }}
 			{% else %}
-				{{ instance.data_inceput | date("d—m—Y") }} — {{ instance.data_sfarsit | date("d—m—Y") }}
+				{{ instance.data_inceput | date("l d/m/Y") }} → {{ instance.data_sfarsit | date("l d/m/Y") }}
 			{% endif %}
-		</span>, <span class='evenimentinstance__time'>
-			{{ instance.ora_inceput | date("H:i") }} — {{ instance.ora_sfarsit | date("H:i") }}
+		</span> {{__("de la", "TDI")}} <span class='evenimentinstance__time'>
+			{{ instance.ora_inceput | date("H:i") }} {{__("la", "TDI")}} {{ instance.ora_sfarsit | date("H:i") }}
 		</span>
 	</div>
 
