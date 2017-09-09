@@ -24,8 +24,6 @@ Timber::$dirname = array('templates', 'views');
 
 class TDISite extends TimberSite {
 
-	const GMAPS_API_KEY = 'AIzaSyDYmP_uzYH2oq6kqPQJo3vDkufYaqJ6sLw';
-
 	function __construct() {
 		add_theme_support( 'post-formats' );
 		add_theme_support( 'post-thumbnails' );
@@ -409,7 +407,7 @@ class TDISite extends TimberSite {
 	}
 
 	function my_acf_google_map_api( $api ) {
-		$api['key'] = self::GMAPS_API_KEY;
+		$api['key'] = GMAPS_API_KEY;
 		return $api;
 	}
 
@@ -419,7 +417,7 @@ class TDISite extends TimberSite {
 
 		wp_register_script('galleria', "${local_script_path}/galleria.js");
 		wp_register_script('gallery', "${local_script_path}/Gallery.js", array('galleria'));
-		wp_register_script('google-maps', "https://maps.googleapis.com/maps/api/js?callback=initMap&key=" . self::GMAPS_API_KEY);
+		wp_register_script('google-maps', "https://maps.googleapis.com/maps/api/js?callback=initMap&key=" . GMAPS_API_KEY);
 		wp_register_script('map', "${local_script_path}/map.js", array('google-maps'));
 	}
 

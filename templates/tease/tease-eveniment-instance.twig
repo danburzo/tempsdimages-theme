@@ -11,7 +11,7 @@
 		</span>
 	</div>
 
-	{% if instance.biletmaster %}
+	{% if editie_curenta and instance.biletmaster %}
 		<div class='evenimentinstance__tickets'>
 			<a href='{{instance.biletmaster}}' target='_blank'>{{__("Cumpără bilete", "TDI")}}</a>
 		</div>

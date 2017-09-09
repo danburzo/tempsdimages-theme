@@ -28,14 +28,18 @@
 				<div class='row row--spaced'>
 				{% for instanta_eveniment in row %}
 					<div class='col-md-4'>
-						<p>{{ instanta_eveniment.ora_inceput | date("H:i") }} — {{ instanta_eveniment.ora_sfarsit | date("H:i") }}</p>
+						<div>{{ instanta_eveniment.ora_inceput | date("H:i") }} — {{ instanta_eveniment.ora_sfarsit | date("H:i") }}</div>
 						{% 
 							include 'tease/tease-eveniment.twig' with {
 								'post': instanta_eveniment.eveniment,
 								'loc': instanta_eveniment.loc
 							}
 						%}
-						<p><a href='{{instanta_eveniment.biletmaster}}' target='_blank'>Bilete</a></p>
+						{% if editie_curenta and instanta_eveniment.biletmaster %}
+							<div>
+								<a href='{{instanta_eveniment.biletmaster}}' target='_blank'>Bilete</a>
+							</div>
+						{% endif %}
 					</div>
 				{% endfor %}
 				</div><!-- /row -->

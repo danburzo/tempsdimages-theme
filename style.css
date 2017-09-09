@@ -347,6 +347,8 @@ input, textarea, select {
 	width: 1em;
 	height: 1em;
 	display: none;
+	background-repeat: no-repeat;
+	background-position: center center;
 }
 
 .header__social .menuitem__icon--facebook-com {
@@ -357,6 +359,11 @@ input, textarea, select {
 .header__social .menuitem__icon--vimeo-com {
 	display: inline-block;
 	background-image: url('./static/svg/icons/vimeo-white.svg');
+}
+
+.header__social .menuitem__icon--youtube-com {
+	display: inline-block;
+	background-image: url('./static/svg/icons/youtube-white.svg');
 }
 
 .header__social .menuitem__icon--issuu-com {
@@ -371,6 +378,7 @@ input, textarea, select {
 
 .header__social .menuitem__icon--facebook-com + .menuitem__label,
 .header__social .menuitem__icon--vimeo-com + .menuitem__label,
+.header__social .menuitem__icon--youtube-com + .menuitem__label,
 .header__social .menuitem__icon--issuu-com + .menuitem__label,
 .header__social .menuitem__icon--biletmaster-ro + .menuitem__label {
 	display: none;
