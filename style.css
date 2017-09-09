@@ -585,3 +585,10 @@ input, textarea, select {
 	text-align: left;
 	font-size: 0.9em;
 }
+
+
+/* Component: Map */
+
+.map {
+	height: 20em;
+}

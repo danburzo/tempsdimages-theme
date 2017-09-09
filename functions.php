@@ -24,6 +24,8 @@ Timber::$dirname = array('templates', 'views');
 
 class TDISite extends TimberSite {
 
+	const GMAPS_API_KEY = 'AIzaSyDYmP_uzYH2oq6kqPQJo3vDkufYaqJ6sLw';
+
 	function __construct() {
 		add_theme_support( 'post-formats' );
 		add_theme_support( 'post-thumbnails' );
@@ -47,6 +49,8 @@ class TDISite extends TimberSite {
 		add_filter('get_previous_post_sort', array($this, 'configure_previous_post_sort'), 10, 2);
 
 		add_filter( 'nav_menu_meta_box_object', array( $this, 'disable_pagination_in_menu_meta_box' ) );
+
+		add_filter('script_loader_tag', array ( $this, 'configure_script_tags'), 10, 3);
 
 		if( function_exists('acf_add_options_page') ) {
 			acf_add_options_page(array(
@@ -398,13 +402,25 @@ class TDISite extends TimberSite {
 	}
 
 	function my_acf_google_map_api( $api ) {
-		$api['key'] = 'AIzaSyDYmP_uzYH2oq6kqPQJo3vDkufYaqJ6sLw';
+		$api['key'] = self::GMAPS_API_KEY;
 		return $api;
 	}
 
 	function register_scripts() {
-		wp_register_script('galleria', get_template_directory_uri() . '/static/js/galleria.js');
-		wp_register_script('gallery', get_template_directory_uri() . '/static/js/Gallery.js', array('galleria'));
+
+		$local_script_path = get_template_directory_uri() . '/static/js';
+
+		wp_register_script('galleria', "${local_script_path}/galleria.js");
+		wp_register_script('gallery', "${local_script_path}/Gallery.js", array('galleria'));
+		wp_register_script('google-maps', "https://maps.googleapis.com/maps/api/js?callback=initMap&key=" . self::GMAPS_API_KEY);
+		wp_register_script('map', "${local_script_path}/map.js", array('google-maps'));
+	}
+
+	function configure_script_tags($tag, $handle, $src) {
+		if ($handle === 'google-maps') {
+			return "<script src='$src' async defer></script>";
+		}
+		return $tag;
 	}
 
 

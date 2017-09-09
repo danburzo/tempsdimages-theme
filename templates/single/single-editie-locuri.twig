@@ -10,6 +10,11 @@
 				}
 			%}
 		{% endfor %}
+
+		<h3>{{__("Hartă", "TDI")}}</h3>
+
+		{% include 'components/map.twig' %}
+		
 	{% else %}
 		<p>{{__("Nu există încă locuri adăugate pentru această ediție", "TDI")}}</p>
 	{% endif %}
