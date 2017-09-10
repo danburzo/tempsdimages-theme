@@ -25,7 +25,7 @@
 	</div>
 
 	{% if evenimente %}
-		<h2>Evenimente</h2>
+		<h2>{{__("Evenimente", "TDI")}}</h2>
 		{% for row in evenimente | batch(3) %}
 			<div class='row row--spaced'>
 			{% for eveniment in row %}

@@ -18,6 +18,9 @@ body {
 	font-weight: 300;
 	background: #f0f0f0;
 	color: #222;
+	border: 1.5em solid #0275d8;
+	border-left-width: 2em;
+	border-right-width: 2em;
 }
 
 .wf-loading {
@@ -116,18 +119,14 @@ blockquote p::first-line {
 /* Component: Header */
 
 .header {
-	text-align: center;
-	padding-bottom: 0.25em;
-}
-
-.header__logo {
-
+	padding: 1em;
+	border-bottom: 1px solid #0275d8;
 }
 
 .header__logo a {
 	display: block;
 	width: 4em;
-	height: 3em;
+	height: 2em;
 	background-image: url('./static/svg/logos/tdi.svg');
 	background-size: contain;
 	background-repeat: no-repeat;
@@ -152,13 +151,14 @@ blockquote p::first-line {
 
 .current-menu-ancestor > a,
 .current-menu-parent > a,
-.current-menu-item > a {
+.current-menu-item > a,
+.current-editie-ancestor > a {
 	color: #0275d8;
 }
 
 .header__nav li {
 	display: inline-block;
-	margin: 0 0.75em;
+	margin-right: 1em;
 }
 
 .header__langnav {}
@@ -166,44 +166,16 @@ blockquote p::first-line {
 	display: inline-block;
 }
 
-.header__bar {
-	background: #000;
-	color: #fff;
-	text-align: right;
-	margin-bottom: 1em;
-}
-
-.header__bar a {
-	color: #fff;
-}
-
-.header__bar nav {
+.social__nav .menuitem {
 	display: inline-block;
+	margin-right: 0.5em;
 }
 
-.header__bar li {
-	display: inline-block;
-}
-
-.header__social {
-	display: inline-block;
-}
-
-.header__social .menuitem {
-	border-left: 1px solid #555;
-	padding: 0.3em 0.3em 0.5em 0.6em;
-}
-
-.header__social .menuitem:last-child {
-	border-right: 1px solid #555;
-	padding-right: 0.5em;
-}
-
-.header__social .menuitem a {
+.social__nav .menuitem a {
 	display: block;
 }
 
-.header__social .menuitem__icon {
+.social__nav .menuitem__icon {
 	width: 1.25em;
 	height: 1.25em;
 }
@@ -376,7 +348,7 @@ blockquote p::first-line {
 
 /* Component: menu */
 
-.header__social .menuitem__icon {
+.social__nav .menuitem__icon {
 	vertical-align: middle;
 	width: 1em;
 	height: 1em;
@@ -385,36 +357,36 @@ blockquote p::first-line {
 	background-position: center center;
 }
 
-.header__social .menuitem__icon--facebook-com {
+.social__nav .menuitem__icon--facebook-com {
 	display: inline-block;
-	background-image: url('./static/svg/icons/facebook-white.svg');
+	background-image: url('./static/svg/icons/facebook-black.svg');
 }
 
-.header__social .menuitem__icon--vimeo-com {
+.social__nav .menuitem__icon--vimeo-com {
 	display: inline-block;
-	background-image: url('./static/svg/icons/vimeo-white.svg');
+	background-image: url('./static/svg/icons/vimeo-black.svg');
 }
 
-.header__social .menuitem__icon--youtube-com {
+.social__nav .menuitem__icon--youtube-com {
 	display: inline-block;
-	background-image: url('./static/svg/icons/youtube-white.svg');
+	background-image: url('./static/svg/icons/youtube-black.svg');
 }
 
-.header__social .menuitem__icon--issuu-com {
+.social__nav .menuitem__icon--issuu-com {
 	display: inline-block;
-	background-image: url('./static/svg/icons/issuu-white.svg');
+	background-image: url('./static/svg/icons/issuu-black.svg');
 }
 
-.header__social .menuitem__icon--biletmaster-ro {
+.social__nav .menuitem__icon--biletmaster-ro {
 	display: inline-block;
-	background-image: url('./static/svg/icons/biletmaster-white.svg');
+	background-image: url('./static/svg/icons/biletmaster-black.svg');
 }
 
-.header__social .menuitem__icon--facebook-com + .menuitem__label,
-.header__social .menuitem__icon--vimeo-com + .menuitem__label,
-.header__social .menuitem__icon--youtube-com + .menuitem__label,
-.header__social .menuitem__icon--issuu-com + .menuitem__label,
-.header__social .menuitem__icon--biletmaster-ro + .menuitem__label {
+.social__nav .menuitem__icon--facebook-com + .menuitem__label,
+.social__nav .menuitem__icon--vimeo-com + .menuitem__label,
+.social__nav .menuitem__icon--youtube-com + .menuitem__label,
+.social__nav .menuitem__icon--issuu-com + .menuitem__label,
+.social__nav .menuitem__icon--biletmaster-ro + .menuitem__label {
 	display: none;
 }
 
@@ -426,7 +398,7 @@ blockquote p::first-line {
 }
 
 .searchbox__input {
-	background-image: url('./static/svg/icons/search-white.svg');
+	background-image: url('./static/svg/icons/search-black.svg');
 	background-position: 0.25em center;
 	background-repeat: no-repeat;
 	background-size: 1.25em 1.25em;
@@ -434,11 +406,12 @@ blockquote p::first-line {
 	background-color: transparent;
 	border: none;
 	border-bottom: 1px solid #555;
-	color: #fff;
+	color: #333;
+	max-width: 12em;
 }
 
 .searchbox__input::placeholder {
-	color: #999;
+	color: #777;
 }
 
 /* Component: Nav */
@@ -578,6 +551,15 @@ blockquote p::first-line {
 .g__wrapper {
 	background: #fff;
 	padding-bottom: 3em;
+}
+
+.g__flex {
+	display: flex;
+	justify-content: space-between;
+}
+
+.g__flex--middle {
+	align-items: center;
 }
 
 

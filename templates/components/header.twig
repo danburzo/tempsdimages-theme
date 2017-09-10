@@ -1,38 +1,48 @@
 <header class='header'>
-	{% block header %}
+	<div class='container'>
 
-		<div class='header__bar'>
-			<div class='container'>
-				<nav class='header__social'>
+		<div class='g__flex g__flex--middle'>
+
+			<div class='g__flex__item'>
+				<h1 role="banner" class='header__logo'>
+					<a href="{{site.url}}" rel="home">
+						<span>{{site.name}}</span>
+					</a>
+				</h1>
+			</div>
+
+			<div class='g__flex__item'>
+				<nav role="navigation" class='header__nav'>
+					{% 
+						include "components/menu.twig" with {
+							'menu': menu.get_items
+						} 
+					%}
+				</nav>
+			</div>
+
+			<div class='g__flex__item'>
+				<nav class='social__nav'>
 					{% 
 						include "components/menu.twig" with {
 							'menu': top_menu.get_items
 						} 
 					%}
 				</nav>
-				<form action="{{site.link}}" method="GET" class='searchbox'>
-					<input class='searchbox__input' name="s" type="search"
-					placeholder='{{__("Caută în site", "TDI")}}'>
-				</form>
+			</div>
+
+			<div class='g__flex__item'>
 				<nav class='header__langnav'>
 					{% include 'components/lang-selector.twig' %}
 				</nav>
 			</div>
-		</div>
-		
-		<h1 role="banner" class='header__logo'>
-			<a href="{{site.url}}" rel="home">
-				<span>{{site.name}}</span>
-			</a>
-		</h1>
 
-		<nav role="navigation" class='header__nav'>
-			{% 
-				include "components/menu.twig" with {
-					'menu': menu.get_items
-				} 
-			%}
-		</nav>
-		
-	{% endblock %}
+			<div class='g__flex__item'>
+				<form action="{{site.link}}" method="GET" class='searchbox'>
+					<input class='searchbox__input' name="s" type="search"
+					placeholder='{{__("Caută în site", "TDI")}}'>
+				</form>
+			</div>
+		</div>
+	</div>
 </header>

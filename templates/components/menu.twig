@@ -6,11 +6,13 @@
 				<span class='menuitem__icon menuitem__icon--{{ item.link | hostname }}'></span>
 				<span class='menuitem__label'>{{ item.title }}</span>
 			</a>
+			{% if nested %}
 			{% 
 				include "components/menu.twig" with {
 					'menu': item.get_children
 				}
 			%}
+			{% endif %}
 		</li>
 	{% endfor %}
 	</ul>

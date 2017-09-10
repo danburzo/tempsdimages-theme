@@ -1,11 +1,21 @@
 <div class='eveniment__artists'>
-	<h3>{{__("Despre artiști", "TDI")}}</h3>
+	{% set show_section = false %}
+
 	{% for artist in eveniment_artisti %}
-		{% 
-			include 'tease/tease-artist.twig' with {
-				'post': artist,
-				'exclude_name': true
-			}
-		%}
+		{% if artist.content %}
+			{% set show_section = true %}
+		{% endif %}
 	{% endfor %}
+
+	{% if show_section %}
+		<h3>{{__("Despre artiști", "TDI")}}</h3>
+		{% for artist in eveniment_artisti %}
+			{% 
+				include 'tease/tease-artist.twig' with {
+					'post': artist,
+					'exclude_name': true
+				}
+			%}
+		{% endfor %}
+	{% endif %}
 </div>
