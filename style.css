@@ -78,6 +78,40 @@ input, textarea, select {
 	font-size: 1em;
 }
 
+blockquote {
+	padding: 1em 2.5em;
+	margin: 2em 0;
+	font-family: 'acumin-pro-wide', Helvetica, Arial, sans-serif;
+	font-weight: 700;
+	position: relative;
+	border-top: 3px solid #eee;
+}
+
+blockquote:before {
+	content: '“';
+	position: absolute;
+	left: 0.3em;
+	top: 0;
+	font-size: 2.4em;
+	color: #aaa;
+	font-weight: normal;
+	font-family: 'Times New Roman', serif;
+}
+
+blockquote:after {
+	content: '”';
+	position: absolute;
+	right: 0.3em;
+	top: 0;
+	font-size: 2.4em;
+	color: #aaa;
+	font-weight: normal;
+	font-family: 'Times New Roman', serif;
+}
+
+blockquote p::first-line {
+	background-color: #ffcc00;
+}
 
 /* Component: Header */
 
@@ -201,7 +235,7 @@ input, textarea, select {
 
 .footer__social .menuitem {
 	display: inline-block;
-	margin: 0 0.5em;
+	margin-right: 0.5em;
 }
 
 /* 
@@ -419,6 +453,10 @@ input, textarea, select {
 	padding: 1em 0;
 }
 
+.pagination .col {
+	padding: 2em;
+}
+
 .pagination__list {
 	list-style: none;
 }
@@ -443,6 +481,9 @@ input, textarea, select {
 	display: none;
 }
 
+.pagination--eveniment {
+	border: 3px solid #f0f0f0;
+}
 
 .eveniment__header {
 	margin: 1.5em 0;

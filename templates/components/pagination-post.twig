@@ -1,12 +1,12 @@
 {% if prev or next %}
 	<div class='pagination pagination--post row'>
-		<div class='col-sm-6'>
+		<div class='col col-sm-6'>
 			{% if prev %}
-			<a href="{{prev.link}}" class="pagination__item pagination__item--prev">
-				&larr; 
-				<h2>{{prev.title}}</h2>
-				<p>{{prev.date | date("d—m—Y")}}</p>
-			</a>
+				{% 
+					include 'tease/tease-post.twig' with {
+						'post': prev
+					}
+				%}
 			{% else %}
 			<span class='pagination__item pagination__item--prev pagination__item--inactive'>
 				&larr;
@@ -14,13 +14,13 @@
 			{% endif %}
 		</div>
 
-		<div class='col-sm-6'>
+		<div class='col col-sm-6'>
 			{% if next %}
-			<a href="{{next.link}}" class="pagination__item pagination__item--next">
-				&rarr;
-				<h2>{{next.title}}</h2>
-				<p>{{next.date | date("d—m—Y")}}</p>
-			</a>
+				{% 
+					include 'tease/tease-post.twig' with {
+						'post': next
+					}
+				%}
 			{% else %}
 			<span class='pagination__item pagination__item--next pagination__item--inactive'>
 				&rarr;

@@ -1,17 +1,8 @@
 <footer class='footer'>
 	<div class='container'>
     <div class='row'>
-      <div class='col-md-4'>
+      <div class='col-md-6'>
         <p>Temps D’Images &copy; 2008 — 2017</p>
-      </div>
-      <div class='col-md-4'>
-        <h4>{{__("Newsletter", "TDI")}}</h4>
-        <form action="{{site.link}}" method="GET" class='newsletter'>
-          <input name="s" type="search" placeholder='{{__("Adresa de e-mail", "TDI")}}'>
-          <button type='submit' class='btn'>{{__("Abonează-te", "TDI")}}</button>
-        </form>
-      </div>
-      <div class='col-md-4'>
         <nav class='footer__social'>
           {% 
             include "components/menu.twig" with {
@@ -19,6 +10,14 @@
             } 
           %}
         </nav>
+      </div>
+      <div class='col-md-6'>
+        {% 
+          include [
+            'components/newsletter-' ~ language ~ '.twig', 
+            'components/newsletter.twig'
+          ] 
+        %}
       </div>
 	</div>
 </footer>

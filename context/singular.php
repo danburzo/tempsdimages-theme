@@ -3,6 +3,12 @@
 	$post = new TimberPost();
 	$context['post'] = $post;
 
+	$redirect_to = get_field('redirect_to', $post->ID);
+
+	if ($redirect_to) {
+		wp_redirect($redirect_to);
+	}
+
 	/*
 		Context Building
 		--------------------------------------

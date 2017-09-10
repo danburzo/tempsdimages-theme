@@ -100,6 +100,8 @@ class TDISite extends TimberSite {
 
 		$context['options'] = get_fields('option');
 
+		$context['language'] = strtolower(ICL_LANGUAGE_CODE);
+
 		$context['default_thumbnail'] = get_template_directory_uri() . '/static/svg/default-thumbnail.svg';
 
 		// add the WPML languages
