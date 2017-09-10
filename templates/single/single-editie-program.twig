@@ -1,17 +1,21 @@
 {% extends 'single/single-editie.twig' %}
 
 {% block editie_content %}
-	{% for row in evenimente | batch(3) %}
-		<div class='row row--spaced'>
-		{% for eveniment in row %}
-			<div class='col-sm-4'>
-			{% 
-				include 'tease/tease-eveniment.twig' with {
-					'post': eveniment
-				}
-			%}
+	{% if evenimente | length %}
+		{% for row in evenimente | batch(3) %}
+			<div class='row row--spaced'>
+			{% for eveniment in row %}
+				<div class='col-sm-4'>
+				{% 
+					include 'tease/tease-eveniment.twig' with {
+						'post': eveniment
+					}
+				%}
+				</div>
+			{% endfor %}
 			</div>
 		{% endfor %}
-		</div>
-	{% endfor %}
+	{% else %}
+		{{ __("Programul pentru această ediție nu este disponibil încă", "TDI") }}
+	{% endif %}
 {% endblock %}

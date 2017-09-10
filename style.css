@@ -70,6 +70,7 @@ nav ul {
 
 img {
 	max-width: 100%;
+	height: auto;
 }
 
 b, strong {
@@ -152,7 +153,8 @@ blockquote p::first-line {
 .current-menu-ancestor > a,
 .current-menu-parent > a,
 .current-menu-item > a,
-.current-editie-ancestor > a {
+.current-editie-ancestor > a,
+body.single-editie .menu-item-type-post_type_archive.menu-item-object-editie > a {
 	color: #0275d8;
 }
 
