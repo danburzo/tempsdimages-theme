@@ -1,3 +1,8 @@
 .row--spaced {
 	margin-bottom: 2em;
 }
+
+.container {
+	max-width: 66em;
+	max-width: min(60em, 100%);
+}

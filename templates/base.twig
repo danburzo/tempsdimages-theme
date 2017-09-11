@@ -6,7 +6,7 @@
 			<!-- additional things here -->
 		{% endblock %}
 	</head>
-	<body class="{{body_class}}">
+	<body class="{{body_class}} {% if editie_curenta %} editie-curenta {% endif %}">
 		<div class='g__wrapper'>
 			{% block header %}
 				{% include 'components/header.twig' %}

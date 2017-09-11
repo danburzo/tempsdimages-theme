@@ -16,11 +16,9 @@ body {
 	padding: 0;
 	margin: 0;
 	font-weight: 300;
-	background: #f0f0f0;
 	color: #222;
-	border: 1.5em solid #0275d8;
-	border-left-width: 2em;
-	border-right-width: 2em;
+	border: 2em solid #0275d8;
+	background-color: #0275d8;
 }
 
 .wf-loading {
@@ -120,13 +118,16 @@ blockquote p::first-line {
 /* Component: Header */
 
 .header {
-	padding: 1em;
-	border-bottom: 1px solid #0275d8;
+}
+
+.header__inner {
+	padding: 1em 0;
+	border-bottom: 5px solid #0275d8;
 }
 
 .header__logo a {
 	display: block;
-	width: 4em;
+	width: 3em;
 	height: 2em;
 	background-image: url('./static/svg/logos/tdi.svg');
 	background-size: contain;
@@ -144,6 +145,7 @@ blockquote p::first-line {
 	/*font-weight: 700;*/
 	font-size: 1.2em;
 	margin: 1em 0;
+	letter-spacing: 0.01em;
 }
 
 .header__nav a {
@@ -158,6 +160,10 @@ body.single-editie .menu-item-type-post_type_archive.menu-item-object-editie > a
 	color: #0275d8;
 }
 
+body.editie-curenta .menu-item-type-post_type_archive.menu-item-object-editie > a {
+	color: inherit;
+}
+
 .header__nav li {
 	display: inline-block;
 	margin-right: 1em;
@@ -166,6 +172,10 @@ body.single-editie .menu-item-type-post_type_archive.menu-item-object-editie > a
 .header__langnav {}
 .header__langnav li {
 	display: inline-block;
+}
+
+.header .social__nav {
+	margin-bottom: 0.5em;
 }
 
 .social__nav .menuitem {
@@ -184,27 +194,36 @@ body.single-editie .menu-item-type-post_type_archive.menu-item-object-editie > a
 
 .lang {
 	text-transform: uppercase;
-	letter-spacing: 0.01em;
+	letter-spacing: 0.02em;
+	font-weight: 700;
 }
 
 .lang .lang__item--active {
-	display: none;
+	/*display: none;*/
+	color: #999;
+	font-weight: normal;
 }
 
 /* Component: footer */
 
 .footer {
 	padding: 3em 0;
-	color: #555;
+	color: rgba(0,0,0,0.6);
+	background-color: rgba(255,255,255,0.8);
 }
 
 .footer a {
 	color: inherit;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid rgba(0,0,0,0.2);
+	font-weight: 700;
 }
 
 .footer a:hover {
 	text-decoration: none;
+}
+
+.footer__social {
+	font-size: 0.9em;
 }
 
 .footer__social .menuitem {
@@ -249,8 +268,13 @@ body.single-editie .menu-item-type-post_type_archive.menu-item-object-editie > a
 .tease-eveniment__thumb {
 	overflow: hidden;
 	display: block;
-	background-color: #f0f0f0;
 	position: relative;
+}
+
+.tease-eveniment__thumb img {
+	filter: grayscale(100%);
+	transition: all 0.3s;
+	mix-blend-mode: multiply;
 }
 
 .tease-eveniment__thumb:after {
@@ -260,19 +284,17 @@ body.single-editie .menu-item-type-post_type_archive.menu-item-object-editie > a
 	bottom: 0;
 	left: 0;
 	right: 0;
-	background: rgba(255,200,200,0.2);
-}
-
-.tease-eveniment__thumb img {
-	filter: grayscale(100%);
-	opacity: 0.75;
-	transition: all 0.3s;
+	mix-blend-mode: screen;
 }
 
 .tease-eveniment:hover .tease-eveniment__thumb img {
 	filter: grayscale(0%);
-	opacity: 1;
 	transform: scale(1.05);
+	mix-blend-mode: normal;
+}
+
+.tease-eveniment:hover .tease-eveniment__thumb:after {
+	opacity: 0;
 }
 
 .tease-eveniment__loc .tease-loc__title {
@@ -312,7 +334,7 @@ body.single-editie .menu-item-type-post_type_archive.menu-item-object-editie > a
 /* Component: Calendar dayheader */
 
 .calendar__dayheader {
-	background: #efefef;
+	background-color: #efefef;
 	padding: 1.5em 3em;
 	display: inline-block;
 	text-align: center;
@@ -511,6 +533,10 @@ body.single-editie .menu-item-type-post_type_archive.menu-item-object-editie > a
 	margin-top: 1.5em;
 }
 
+.eveniment__artists h3 {
+	margin-bottom: 0.5em;
+}
+
 .comingsoon {
 	position: absolute;
 	top: 0;
@@ -537,6 +563,13 @@ body.single-editie .menu-item-type-post_type_archive.menu-item-object-editie > a
 	font-size: 1.2em;
 }
 
+.post__content h1, 
+.post__content h2,
+.post__content h3,
+.post__content h4 {
+	margin-bottom: 0.5em;
+}
+
 .post__image img {
 	display: block;
 	width: 100%;
@@ -547,12 +580,12 @@ body.single-editie .menu-item-type-post_type_archive.menu-item-object-editie > a
 .gallery {
 	height: 0;
 	box-sizing: content-box;
-	padding-bottom: 66.66%;
+	padding-bottom: 50%;
 }
 
 .g__wrapper {
 	background: #fff;
-	padding-bottom: 3em;
+	padding: 1em 0 3em;
 }
 
 .g__flex {
@@ -647,4 +680,27 @@ body.single-editie .menu-item-type-post_type_archive.menu-item-object-editie > a
 
 .attachments__icon svg {
 	display: block;
+}
+
+.video {
+	position: relative;
+	height: 0;
+	padding-bottom: 58.5%;
+	box-sizing: content-box;
+}
+
+.video iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.header--editie h1 {
+	font-size: 1.8em;
+}
+
+.header--editie .header__nav {
+	margin-bottom: 0;
 }

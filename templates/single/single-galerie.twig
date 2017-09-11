@@ -1,0 +1,9 @@
+{% extends "single/single.twig" %}
+
+{% block gallery %}
+	{% 
+		include 'components/gallery.twig' with {
+			'gallery_post': post
+		}
+	%}
+{% endblock %}

@@ -14,11 +14,11 @@ if ( ! class_exists( 'Timber' ) ) {
 
 // "Coming Soon" page for non-logged-in users
 // comment this out when ready
-if (!is_user_logged_in() && !is_admin()) {
-	add_filter('template_include', function($template) {
-		return get_stylesheet_directory() . '/coming-soon.php';
-	});
-}
+// if (!is_user_logged_in() && !is_admin()) {
+// 	add_filter('template_include', function($template) {
+// 		return get_stylesheet_directory() . '/coming-soon.php';
+// 	});
+// }
 
 Timber::$dirname = array('templates', 'views');
 
@@ -49,6 +49,8 @@ class TDISite extends TimberSite {
 		add_filter( 'nav_menu_meta_box_object', array( $this, 'disable_pagination_in_menu_meta_box' ) );
 
 		add_filter('script_loader_tag', array ( $this, 'configure_script_tags'), 10, 3);
+
+		add_filter('oembed_result', array ($this, 'remove_dimensions_from_oembed'));
 
 		if( function_exists('acf_add_options_page') ) {
 			acf_add_options_page(array(
@@ -129,7 +131,16 @@ class TDISite extends TimberSite {
 			return "http://www.google.com/maps/place/{$coords['lat']},{$coords['lng']}";
 		}));
 
+		$twig->addFilter('oembed', new Twig_SimpleFilter('oembed', array($this, 'oembed')));
+
 		return $twig;
+	}
+
+	function oembed($url) {
+		return wp_oembed_get($url, array(
+			'width' => '100%',
+			'height' => '100%'
+		));
 	}
 
 	function extract_hostname($url) {
@@ -303,6 +314,10 @@ class TDISite extends TimberSite {
 				$query->set('order', 'DESC');
 			}
 		}
+
+		if ($query->is_category()) {
+			$query->set('posts_per_page', 12);
+		}
 	}
 
 	function get_editie($post) {
@@ -377,7 +392,7 @@ class TDISite extends TimberSite {
 		return $locuri;
 	}
 
-	function is_editie_curenta($context, $editie) {
+	function is_editie_curenta($editie) {
 		$editie_curenta_id = $this->object_id_in_current_language(
 			$this->get_global_option('editia_curenta')->ID, 
 			'editie'
@@ -494,6 +509,14 @@ class TDISite extends TimberSite {
 
 	function _adjacent_eveniment_order($order) {
 		return "ORDER BY lower(p.post_title) {$order} LIMIT 1";
+	}
+
+	function remove_dimensions_from_oembed($html) {
+		return preg_replace(
+			'/(width="[^"]+")|(height="[^"]+")/i',
+			'',
+			$html
+		);
 	}
 }
 

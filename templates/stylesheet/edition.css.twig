@@ -1,0 +1,28 @@
+{% if colors.accent_primar and colors.accent_secundar %}
+
+body {
+	border-color: {{colors.accent_primar}};
+	background-color: {{colors.accent_primar}};
+}
+
+a {
+	color: {{colors.accent_primar}};
+}
+
+.header__inner {
+	border-color: {{colors.accent_secundar}};
+}
+
+.tease-eveniment__thumb {
+	background-color: {{colors.accent_secundar}};
+}
+
+.tease-eveniment__thumb:after {
+	background-color: {{colors.accent_primar}};
+}
+
+.calendar__dayheader {
+	color: {{colors.accent_primar}};
+	background-color: {{colors.accent_secundar}};
+}
+{% endif %}

@@ -1,14 +1,24 @@
 {% if editie %}
-	<header class='header'>
-		<h1><a href='{{editie.link}}'>{{editie.title}}</a> — {{editie.tagline}}</h1>
-		{% if editie_menu %}
-			<nav class='header__nav header__nav--secondary'>
-			{% 
-				include 'components/menu.twig' with {
-					'menu': editie_menu.get_items
-				}
-			%}
-			</nav>
-		{% endif %}
+	<header class='header header--editie'>
+		<div class='header__inner'>
+			<h1><a href='{{editie.link}}'>{{editie.title}}</a> {{editie.tagline}}</h1>
+			{% if editie_menu %}
+				<nav class='header__nav header__nav--secondary'>
+				{% 
+					include 'components/menu.twig' with {
+						'menu': editie_menu.get_items
+					}
+				%}
+				</nav>
+			{% endif %}
+		</div>
 	</header>
+
+	<style type='text/css'>
+		{% 
+			include 'stylesheet/edition.css.twig' with {
+				'colors': editie.get_field('colors')
+			}
+		%}
+	</style>
 {% endif %}

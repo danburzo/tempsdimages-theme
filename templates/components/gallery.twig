@@ -1,8 +1,11 @@
-{% set gallery_post = post.get_field('galerie') %}
+{% if not gallery_post %}
+	{% set gallery_post = post.get_field('galerie') %}
+{% endif %}
 
 {% if gallery_post %}
 
 	{% set photo_gallery = gallery_post.get_field('galerie') %}
+	{% set video_gallery = gallery_post.get_field('video') %}
 
 	{% if photo_gallery %}
 
@@ -32,5 +35,28 @@
 				</div>
 			</div>
 		</div> <!-- /container -->
+	{% endif %}
+
+	{% if video_gallery %}
+		<div class='container'>
+			{% for row in video_gallery | batch(3) %}
+				<div class='row row--spaced'>
+				{% for video in row %}
+					<div class='col-md-4'>
+					{% if video.link %}
+						{% set type = video.link | hostname %}
+
+						{% if type == 'vimeo-com' %}
+							{% include 'components/video-vimeo.twig' %}
+						{% elseif type == 'youtube-com' %}
+							{% include 'components/video-youtube.twig' %}
+						{% endif %}
+					{% endif %}
+					</div>
+				{% endfor %}
+				</div>
+			{% endfor %}
+
+		</div>
 	{% endif %}
 {% endif %}
