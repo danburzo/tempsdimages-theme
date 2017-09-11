@@ -16,9 +16,14 @@ body {
 	padding: 0;
 	margin: 0;
 	font-weight: 300;
-	color: #222;
-	border: 2em solid #0275d8;
+	color: #292929;
+	border-color: #0275d8;
 	background-color: #0275d8;
+	border-style: solid;
+	border-left-width: 2em;
+	border-right-width: 0;
+	border-bottom-width: 0;
+	border-top-width: 0;
 }
 
 .wf-loading {
@@ -80,6 +85,13 @@ input, textarea, select {
 	font-size: 1em;
 }
 
+input {
+	background-color: transparent;
+	border: none;
+	border-bottom: 1px solid rgba(0,0,0,0.5);
+	min-height: 2.5em;
+}
+
 blockquote {
 	padding: 1em 2.5em;
 	margin: 2em 0;
@@ -122,7 +134,7 @@ blockquote p::first-line {
 
 .header__inner {
 	padding: 1em 0;
-	border-bottom: 5px solid #0275d8;
+	/*border-bottom: 2px solid #0275d8;*/
 }
 
 .header__logo a {
@@ -142,10 +154,11 @@ blockquote p::first-line {
 
 .header__nav {
 	font-family: 'acumin-pro-condensed', Helvetica, Arial, sans-serif;
-	/*font-weight: 700;*/
-	font-size: 1.2em;
+	font-weight: 500;
+	/*font-size: 1.2em;*/
+	font-size: 1.1em;
 	margin: 1em 0;
-	letter-spacing: 0.01em;
+	letter-spacing: 0.02em;
 }
 
 .header__nav a {
@@ -161,7 +174,7 @@ body.single-editie .menu-item-type-post_type_archive.menu-item-object-editie > a
 }
 
 body.editie-curenta .menu-item-type-post_type_archive.menu-item-object-editie > a {
-	color: inherit;
+	color: #777;
 }
 
 .header__nav li {
@@ -172,15 +185,20 @@ body.editie-curenta .menu-item-type-post_type_archive.menu-item-object-editie > 
 .header__langnav {}
 .header__langnav li {
 	display: inline-block;
+	margin-left: 0.25em;
+}
+
+.header__langnav li:first-child {
+	margin-left: 0;
 }
 
 .header .social__nav {
-	margin-bottom: 0.5em;
+	/*margin-bottom: 0.5em;*/
 }
 
 .social__nav .menuitem {
 	display: inline-block;
-	margin-right: 0.5em;
+	margin-right: 0.75em;
 }
 
 .social__nav .menuitem a {
@@ -258,6 +276,9 @@ body.editie-curenta .menu-item-type-post_type_archive.menu-item-object-editie > 
 	letter-spacing: 0.02em;
 	color: #777;
 	font-size: 1.2em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .tease-eveniment__title {
@@ -334,11 +355,13 @@ body.editie-curenta .menu-item-type-post_type_archive.menu-item-object-editie > 
 /* Component: Calendar dayheader */
 
 .calendar__dayheader {
-	background-color: #efefef;
+	/*background-color: #efefef;*/
 	padding: 1.5em 3em;
 	display: inline-block;
 	text-align: center;
 	line-height: 1;
+	border: 5px solid currentColor;
+	margin-top: 2.5em;
 }
 
 .calendar__dayheader-weekday,
@@ -367,6 +390,16 @@ body.editie-curenta .menu-item-type-post_type_archive.menu-item-object-editie > 
 
 .calendar__day .calendar__dayheader {
 	display: block;
+}
+
+.calendar__day .evenimentinstance__time {
+	font-weight: 700;
+	font-size: 1.2em;
+	margin-bottom: 0.5em;
+}
+
+.calendar__day .tease-eveniment {
+	text-align: left;
 }
 
 
@@ -427,9 +460,6 @@ body.editie-curenta .menu-item-type-post_type_archive.menu-item-object-editie > 
 	background-repeat: no-repeat;
 	background-size: 1.25em 1.25em;
 	padding-left: 1.6em;
-	background-color: transparent;
-	border: none;
-	border-bottom: 1px solid #555;
 	color: #333;
 	max-width: 12em;
 }
@@ -703,4 +733,39 @@ body.editie-curenta .menu-item-type-post_type_archive.menu-item-object-editie > 
 
 .header--editie .header__nav {
 	margin-bottom: 0;
+	font-size: 1.4em;
+}
+
+.archive__title {
+	margin: 1em 0 0.5em;
+}
+
+
+/* MOBILE */
+
+/* xs */
+@media (max-width: 575px) { 
+
+}
+
+/* sm */
+@media (max-width: 767px) { 
+	html {
+		font-size: 14px;
+	}
+
+	body {
+		border-top-width: 1em;
+		border-left-width: 0;
+	}
+}
+
+/* md */
+@media (max-width: 991px)  {
+
+}
+
+/* lg */
+@media (max-width: 1199px) {
+
 }

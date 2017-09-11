@@ -2,7 +2,7 @@
 
 {% block content %}
 
-	<h1>{{__("Ediții", "TDI")}}</h1>
+	<h1 class='archive__title'>{{__("Ediții", "TDI")}}</h1>
 
 	{% for row in posts | batch(3) %}
 		<div class='row row--spaced'>

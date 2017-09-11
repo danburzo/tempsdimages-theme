@@ -6,3 +6,26 @@
 	max-width: 66em;
 	max-width: min(60em, 100%);
 }
+
+.btn {
+	border-radius: 2px;
+	background: #292929;
+	color: #fff;
+	text-transform: uppercase;
+	font-family: 'acumin-pro-wide';
+	font-weight: 700;
+	border: none;
+}
+
+.form-group label {
+	font-family: 'acumin-pro-wide';
+	font-weight: 700;
+}
+
+.form-control {
+	border: none;
+	border-radius: 0;
+	border-bottom: 1px solid rgba(0,0,0,0.5);
+	padding: 0.5em 0;
+	font-family: inherit;
+}

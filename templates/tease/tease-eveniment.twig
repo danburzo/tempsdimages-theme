@@ -1,8 +1,12 @@
 <div class='tease-eveniment'>
 
-	<div class='tease-eveniment__category'>
+	{% if not exclude_category %}
+
+	<div class='tease-eveniment__category' title="{{ post.get_field('categorie')}}">
 		{{ post.get_field('categorie') | default('&nbsp;') }}
 	</div>
+
+	{% endif %}
 
 	<a href='{{post.link}}' title='{{ post.title }}' class='tease-eveniment__thumb'>
 		{% if post.thumbnail %}

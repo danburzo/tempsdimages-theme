@@ -1,28 +1,40 @@
 {% if colors.accent_primar and colors.accent_secundar %}
 
-body {
-	border-color: {{colors.accent_primar}};
-	background-color: {{colors.accent_primar}};
-}
+	body {
+		border-color: {{colors.accent_primar}};
+		background-color: {{colors.accent_primar}};
+	}
 
-a {
-	color: {{colors.accent_primar}};
-}
+	a {
+		color: {{colors.accent_primar}};
+	}
 
-.header__inner {
-	border-color: {{colors.accent_secundar}};
-}
+	.header__inner {
+		border-color: {{colors.accent_secundar}};
+	}
 
-.tease-eveniment__thumb {
-	background-color: {{colors.accent_secundar}};
-}
+	.tease-eveniment__thumb {
+		background-color: {{colors.accent_secundar}};
+	}
 
-.tease-eveniment__thumb:after {
-	background-color: {{colors.accent_primar}};
-}
+	.tease-eveniment__thumb:after {
+		background-color: {{colors.accent_primar}};
+	}
 
-.calendar__dayheader {
-	color: {{colors.accent_primar}};
-	background-color: {{colors.accent_secundar}};
-}
+/*	.calendar__dayheader {
+		color: {{colors.accent_primar}};
+		background-color: {{colors.accent_secundar}};
+	}*/
+
+	.editie__tagline {
+		color: {{ colors.accent_secundar }};
+	}
+
+	.current-menu-ancestor > a,
+	.current-menu-parent > a,
+	.current-menu-item > a,
+	.current-editie-ancestor > a,
+	body.single-editie .menu-item-type-post_type_archive.menu-item-object-editie > a {
+		color: {{ colors.accent_primar }};
+	}
 {% endif %}

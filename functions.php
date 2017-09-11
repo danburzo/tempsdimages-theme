@@ -372,11 +372,18 @@ class TDISite extends TimberSite {
 		return new TimberPost($id);
 	}
 
+	function filter_non_null($obj) {
+		return $obj;
+	}
+
 	function get_locuri_for_editie($editie) {
 		$locuri_ids =  array_unique(
-			array_map(
-				array($this, 'get_loc_from_eveniment'), 
-				$this->get_evenimente_for_editie($editie)
+			array_filter(
+				array_map(
+					array($this, 'get_loc_from_eveniment'), 
+					$this->get_evenimente_for_editie($editie)
+				),
+				array($this, 'filter_non_null')
 			)
 		);
 
