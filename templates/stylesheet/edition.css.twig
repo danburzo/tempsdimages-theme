@@ -21,11 +21,6 @@
 		background-color: {{colors.accent_primar}};
 	}
 
-/*	.calendar__dayheader {
-		color: {{colors.accent_primar}};
-		background-color: {{colors.accent_secundar}};
-	}*/
-
 	.editie__tagline {
 		color: {{ colors.accent_secundar }};
 	}
@@ -34,7 +29,11 @@
 	.current-menu-parent > a,
 	.current-menu-item > a,
 	.current-editie-ancestor > a,
-	body.single-editie .menu-item-type-post_type_archive.menu-item-object-editie > a {
-		color: {{ colors.accent_primar }};
+	body.single-editie:not(.editie-curenta) .menu-item-type-post_type_archive.menu-item-object-editie > a {
+		color: {{ colors.accent_primar }} !important;
+	}
+
+	.header--mobile {
+		background-color: {{ colors.accent_primar}};
 	}
 {% endif %}

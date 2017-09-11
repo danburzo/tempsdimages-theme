@@ -23,9 +23,10 @@
 	</article>
 
 	{% 
-		include 'components/pagination-post.twig' with {
+		include 'components/navigation.twig' with {
 			prev: post.prev('category'),
-			next: post.next('category')
+			next: post.next('category'),
+			post: post
 		}
 	%}
 {% endblock %}

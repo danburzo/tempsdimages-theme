@@ -443,6 +443,8 @@ class TDISite extends TimberSite {
 		wp_register_script('gallery', "${local_script_path}/Gallery.js", array('galleria'));
 		wp_register_script('google-maps', "https://maps.googleapis.com/maps/api/js?callback=initMap&key=" . GMAPS_API_KEY);
 		wp_register_script('map', "${local_script_path}/map.js", array('google-maps'));
+
+		wp_register_script('mobile', "${local_script_path}/mobile.js");
 	}
 
 	function configure_script_tags($tag, $handle, $src) {

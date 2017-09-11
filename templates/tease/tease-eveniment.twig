@@ -20,6 +20,8 @@
 		<a href='{{post.link}}'>{{ post.title }}</a>
 	</h2>
 
+	{% if not exclude_loc %}
+
 	<div class='tease-eveniment__loc'>
 		{% if not loc %}
 			{% set loc = post.get_field('loc') %}
@@ -32,6 +34,8 @@
 			}
 		%}
 	</div>
+
+	{% endif %}
 
 	<div class='tease-eveniment__desc'>
 		{{ post.excerpt }}

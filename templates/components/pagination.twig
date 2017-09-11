@@ -1,24 +1,24 @@
 {% if pagination.prev or pagination.next or pagination.pages | length %}
-<div class="pagination">
+<div class="pag pag--general">
     {% if pagination.prev %}
         <a 
             href="{{pagination.prev.link}}" 
-            class="pagination__item"
+            class="pag__item"
         >
             &larr; {{__("Precedenta", "TDI")}}
         </a>
     {% else %}
-        <span class='pagination__item pagination__item--inactive'>
+        <span class='pag__item pag__item--inactive'>
             &larr; {{__("Precedenta", "TDI")}}
         </span>
     {% endif %}
-    <ul class="pagination__list">
+    <ul class="pag__list">
         {% for page in pagination.pages %}
             <li>
                 {% if page.link %}
-                    <a href="{{page.link}}" class="pagination__item {{page.class}}">{{page.title}}</a>
+                    <a href="{{page.link}}" class="pag__item {{page.class}}">{{page.title}}</a>
                 {% else %}
-                    <span class="pagination__item {{page.class}}">{{page.title}}</span>
+                    <span class="pag__item pag__item--current {{page.class}}">{{page.title}}</span>
                 {% endif %}
             </li>
         {% endfor %}
@@ -26,12 +26,12 @@
     {% if pagination.next %}
         <a 
             href="{{pagination.next.link}}" 
-            class="pagination__item"
+            class="pag__item"
         >
             {{__("Următoarea", "TDI")}} &rarr;
         </a>
     {% else %}
-        <span class='pagination__item pagination__item--inactive'>
+        <span class='pag__item pag__item--inactive'>
             {{__("Următoarea", "TDI")}} &rarr;
         </span>
     {% endif %}

@@ -1,0 +1,44 @@
+<header class='header header--mobile hidden-lg-up'>
+	<div class='container'>
+		<div class='g__flex g__flex--middle'>
+			<div class='g__flex__item'>
+				<h1 role="banner" class='header__logo'>
+					<a href="{{site.url}}" rel="home">
+						<span>{{site.name}}</span>
+					</a>
+				</h1>
+			</div>
+			<div class='g__flex__item'>
+				<a href='#' class='btn' data-mobile-toggle='#mobilenav'>{{ __("Meniu", "TDI") }}</a>
+			</div>
+		</div>
+	</div>
+</header>
+
+<div id='mobilenav' class='mobilenav'>
+	<div class='mobilenav__inner'>
+		<nav role="navigation">
+			{% 
+				include "components/menu.twig" with {
+					'menu': menu.get_items
+				} 
+			%}
+		</nav>
+
+		<nav class='header__langnav'>
+			{% include 'components/lang-selector.twig' %}
+		</nav>
+
+		<nav class='social__nav social__nav--light'>
+			{% 
+				include "components/menu.twig" with {
+					'menu': top_menu.get_items
+				} 
+			%}
+		</nav>
+
+		<a href='#' class='btn' data-mobile-toggle='#mobilenav'>{{ __("Închide", "TDI") }}</a>
+	</div>
+</div>
+
+{{ enqueue_script('mobile') }}

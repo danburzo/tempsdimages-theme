@@ -1,0 +1,50 @@
+{% if not prev and post %}
+	{% set prev = post.prev %}
+{% endif %}
+
+{% if not next and post %}
+	{% set next = post.next %}
+{% endif %}
+
+{% if prev or next %}
+	<div class='navigation navigation--{{ post.post_type }}'>
+
+		{% if prev %}
+			<div class='navigation__item navigation__item--prev'>
+				<a href='{{prev.link}}' class='navigation__itembtn'>&larr;</a>
+				<div class='navigation__itemcontent'>
+					{%
+						include [
+							'tease/tease-' ~ post.post_type ~ '.twig', 
+							'tease/tease.twig'
+						] with {
+							'post': prev,
+							'exclude_category': true,
+							'exclude_loc': true,
+							'exclude_desc': true
+						}
+					%}
+				</div>
+			</div>
+		{% endif %}
+
+		{% if next %}
+			<div class='navigation__item navigation__item--next'>
+				<a href='{{next.link}}' class='navigation__itembtn'>&rarr;</a>
+				<div class='navigation__itemcontent'>
+					{%
+						include [
+							'tease/tease-' ~ post.post_type ~ '.twig', 
+							'tease/tease.twig'
+						] with {
+							'post': next,
+							'exclude_category': true,
+							'exclude_loc': true,
+							'exclude_desc': true
+						}
+					%}
+				</div>
+			</div>
+		{% endif %}
+	</div>
+{% endif %}

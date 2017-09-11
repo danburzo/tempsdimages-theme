@@ -17,10 +17,14 @@
 		<h2 class='tease__title'>
 			<a href="{{post.link}}">{{post.title}}</a>
 		</h2>
+
+		{% if not exclude_desc %}
 		
 		<div class='tease__excerpt'>
 			{{ post.get_preview(50) }}
 		</div>
+
+		{% endif %}
 
 	</div>
 {% endblock %}
