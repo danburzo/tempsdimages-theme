@@ -5,14 +5,16 @@
 
 	var container = document.querySelector('.video-overlay');
 	var container__inner = container.querySelector('.video');
+	var container__title = container.querySelector('.video__title');
+	var close__btn = container.querySelector('.video__close');
 
 	var set_autoplay = function(url) {
 		var anchor = document.createElement('a');
 		anchor.href = url;
 		if (anchor.search) {
-			anchor.search += '&autoplay=1';
+			anchor.search += '&autoplay=1&title=false&portrait=false&byline=false&showinfo=0';
 		} else {
-			anchor.search = '?autoplay=1';
+			anchor.search = '?autoplay=1&title=false&portrait=false&byline=false&showinfo=0';
 		}
 		return anchor.href;
 	}
@@ -22,18 +24,20 @@
 			var html = atob(el.dataset.videoEmbed).replace(/src=\"([^\"]+)\"/, function(match, src) {
 				return 'src="' + set_autoplay(src) + '"';
 			});
-			show_video(html);
+			show_video(el.getAttribute('title'), html);
 			e.stopPropagation();
 			e.preventDefault();
 		});
 	});
 
-	function show_video(html) {
+	function show_video(title, html) {
+		container__title.innerHTML = title;
 		container__inner.innerHTML = html;
 		container.classList.add('visible');
 	}
 
 	function hide_video() {
+		container__title.innerHTML = '';
 		container__inner.innerHTML = '';
 		container.classList.remove('visible');
 	}
@@ -53,4 +57,8 @@
 	container__inner.addEventListener('click', function(e) {
 		e.stopPropagation();
 	});
+
+	close__btn.addEventListener('click', function(e) {
+		e.preventDefault();
+	})
 })();

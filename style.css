@@ -19,7 +19,6 @@ body {
 	font-weight: 300;
 	color: #292929;
 	border-color: #0275d8;
-	background-color: #0275d8;
 	border-style: solid;
 	border-left-width: 2em;
 	border-right-width: 0;
@@ -327,9 +326,13 @@ body.single-eveniment:not(.editie-curenta) .menu-item-type-post_type_archive.men
 /* Component: footer */
 
 .footer {
-	padding: 3em 0 5em;
-	color: rgba(0,0,0,0.6);
+	background-color: #0275d8;
+}
+
+.footer__inner {
 	background-color: rgba(255,255,255,0.8);
+	color: rgba(0,0,0,0.6);
+	padding: 3em 0 5em;
 }
 
 .footer a {
@@ -932,7 +935,7 @@ body.single-eveniment:not(.editie-curenta) .menu-item-type-post_type_archive.men
 	position: absolute;
 	z-index: 1000;
 	right: 1em;
-	top: 1em;
+	top: -0.5em;
 }
 
 .video__close a {
@@ -941,12 +944,27 @@ body.single-eveniment:not(.editie-curenta) .menu-item-type-post_type_archive.men
 	text-decoration: none;
 }
 
+.video__title {
+	position: absolute;
+	font-size: 2em;
+	font-family: 'acumin-pro-wide', Helvetica, Arial, sans-serif;
+	color: #fff;
+	font-weight: 700;
+	white-space: nowrap;
+	top: 0.2em;
+	left: 0;
+	right: 2.5em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding-left: 0.5em;
+}
+
 .video {
 	position: absolute;
-	left: 4em;
-	right: 4em;
+	left: 0;
+	right: 0;
 	bottom: 0;
-	top: 0;
+	top: 4em;
 }
 
 .video iframe {
