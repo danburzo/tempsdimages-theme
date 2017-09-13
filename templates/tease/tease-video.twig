@@ -1,0 +1,12 @@
+{% set oembed = video.link | oembed_data %}
+{% set iframe_content = fn("base64_encode", oembed.html) %}
+<div class='tease tease--video'>
+	<a class='tease__thumb' href='{{oembed.url}}' target='_blank' data-video-embed='{{iframe_content}}'>
+		<img src='{{oembed.thumbnail_url | tease_size }}'/>
+	</a>
+	<h2 class='tease__title'>
+		<a href='{{oembed.url}}' target='_blank' data-video-embed='{{iframe_content}}'>
+			{{ video.titlu }}
+		</a>
+	</h2>
+</div>

@@ -132,6 +132,7 @@ class TDISite extends TimberSite {
 		}));
 
 		$twig->addFilter('oembed', new Twig_SimpleFilter('oembed', array($this, 'oembed')));
+		$twig->addFilter('oembed_data', new Twig_SimpleFilter('oembed_data', array($this, 'get_oembed_data')));
 
 		return $twig;
 	}
@@ -445,6 +446,8 @@ class TDISite extends TimberSite {
 		wp_register_script('map', "${local_script_path}/map.js", array('google-maps'));
 
 		wp_register_script('mobile', "${local_script_path}/mobile.js");
+
+		wp_register_script('video-gallery', "${local_script_path}/video-gallery.js");
 	}
 
 	function configure_script_tags($tag, $handle, $src) {
@@ -526,6 +529,24 @@ class TDISite extends TimberSite {
 			'',
 			$html
 		);
+	}
+
+	function get_oembed_data($url) {
+
+		$transient_key = 'tdi_oembed_' . $url;
+
+		$transient = get_transient($transient_key);
+
+		if (!empty($transient)) {
+			return $transient;
+		}
+
+		$oembed = _wp_oembed_get_object();
+		$data = $oembed->get_data($url);
+		$data->url = $url;
+
+		set_transient($transient_key, $data, WEEK_IN_SECONDS);
+		return $data;
 	}
 }
 

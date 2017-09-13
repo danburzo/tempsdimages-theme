@@ -1,15 +1,21 @@
 <footer class='footer'>
 	<div class='container'>
-    <div class='row'>
-      <div class='col-md-6'>
-        <p>Temps D’Images &copy; 2008 — 2017</p>
 
-        
-        <form action="{{site.link}}" method="GET" class='searchbox'>
-          <input class='searchbox__input' name="s" type="search"
-          placeholder='{{__("Caută în site", "TDI")}}'>
-        </form>
-        
+    <div class='row row--spaced'>
+
+      <div class='col-md-3'>
+
+        <h1 role="banner" class='header__logo'>
+          <a href="{{site.url}}" rel="home">
+            <span>{{site.name}}</span>
+          </a>
+        </h1>
+      </div>
+
+      <div class='col-md-3'>
+
+        <h4>{{ __("Link-uri", "TDI") }}</h4>
+
         <nav class='footer__social'>
           {% 
             include "components/menu.twig" with {
@@ -18,7 +24,19 @@
           %}
         </nav>
       </div>
-      <div class='col-md-6'>
+
+      <div class='col-md-3'>
+
+        <h4>{{ __("Căutare", "TDI") }}</h4>
+        
+        <form action="{{site.link}}" method="GET" class='searchbox'>
+          <input class='searchbox__input' name="s" type="search"
+          placeholder='{{__("Caută în site", "TDI")}}'>
+        </form>
+      </div>
+
+      <div class='col-md-3'>
+
         {% 
           include [
             'components/newsletter-' ~ language ~ '.twig', 
@@ -26,6 +44,8 @@
           ] 
         %}
       </div>
+
+      <div class="footer__copyright">Temps D’Images &copy; 2008 — 2017</div>
 	</div>
 </footer>
 

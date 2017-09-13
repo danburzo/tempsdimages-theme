@@ -7,28 +7,30 @@
 	{% set photo_gallery = gallery_post.get_field('galerie') %}
 	{% set video_gallery = gallery_post.get_field('video') %}
 
-	{% if photo_gallery %}
+	{% if photo_gallery and photo_gallery | length %}
 
 		{{ enqueue_script('gallery') }}
 
 		<div class='container'>
 			<div class='gallery'>
 				<a href='#' data-galleria-role='nav-next'>
-					<svg width='20' height='20' viewBox='0 0 20 20'>
+					{# <svg width='20' height='20' viewBox='0 0 20 20'>
 						<polyline points='2,2 5,2 13,10 5,18 2,18 10,10'></polyline>
-					</svg>
+					</svg> #}
+					<span>&rarr;</span>
 				</a>
 				<a href='#' data-galleria-role='nav-prev'>
-					<svg width='20' height='20' viewBox='0 0 20 20'>
+					{# <svg width='20' height='20' viewBox='0 0 20 20'>
 						<polyline points='18,2 15,2 7,10 15,18 18,18 10,10'></polyline>
-					</svg>
+					</svg> #}
+					<span>&larr;</span>
 				</a>
 				<div data-galleria-role='viewport'>
 					<div data-galleria-role='slider'>
 						{% for image in photo_gallery %}
 						<figure data-galleria-role='item'>
-						    <img src="{{ TimberImage(image).src | full_size }}"/>
-						    <figcaption>{{image.caption}}</figcaption>
+						    <picture><img src="{{ TimberImage(image).src | full_size }}"/></picture>
+						    <figcaption>{{image.caption | default(image.title) }}</figcaption>
 						</figure>
 						{% endfor %}
 					</div>
@@ -37,7 +39,7 @@
 		</div> <!-- /container -->
 	{% endif %}
 
-	{% if video_gallery %}
+	{% if video_gallery and video_gallery | length %}
 		<div class='container'>
 			{% for row in video_gallery | batch(3) %}
 				<div class='row row--spaced'>
@@ -46,17 +48,26 @@
 					{% if video.link %}
 						{% set type = video.link | hostname %}
 
-						{% if type == 'vimeo-com' %}
-							{% include 'components/video-vimeo.twig' %}
-						{% elseif type == 'youtube-com' %}
-							{% include 'components/video-youtube.twig' %}
-						{% endif %}
+						{% 
+							include 'tease/tease-video.twig' with {
+								'video': video
+							}
+						%}
+							
 					{% endif %}
 					</div>
 				{% endfor %}
 				</div>
 			{% endfor %}
-
 		</div>
+
+		<div class='video-overlay'>
+			<div class='video__close'>
+				<a href='' data-video-close>&times;</a>
+			</div>
+			<div class='video'></div>
+		</div>
+
+		{{ enqueue_script('video-gallery') }}
 	{% endif %}
 {% endif %}

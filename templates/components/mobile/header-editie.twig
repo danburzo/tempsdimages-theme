@@ -1,0 +1,23 @@
+<header class='header header--editie hidden-lg-up'>
+	<div class='header__inner'>
+		<h1>
+			<a href='{{editie.link}}'>{{editie.title}}</a> 
+			<span class='editie__tagline'>{{editie.tagline}}</span>
+		</h1>
+		{% if editie_menu %}
+
+			<div class='mobilemenu'>
+				<a class='mobilemenu__current' href='#' data-mobile-toggle='#header-editie-mobile'>
+					{{ title | default(post.title) }}
+				</a>
+				<nav id='header-editie-mobile' class='mobilemenu__content' data-mobile-closeonclickoutside>
+					{% 
+						include 'components/menu.twig' with {
+							'menu': editie_menu.get_items
+						}
+					%}
+				</nav>
+		
+		{% endif %}
+	</div>
+</header>

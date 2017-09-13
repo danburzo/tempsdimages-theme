@@ -3,6 +3,10 @@
 	max-width: min(60em, 100%);
 }
 
+a:hover, a:active, a:focus {
+	color: inherit;
+}
+
 .btn {
 	border-radius: 2px;
 	background: #292929;

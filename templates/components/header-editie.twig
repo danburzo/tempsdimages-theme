@@ -1,5 +1,5 @@
 {% if editie %}
-	<header class='header header--editie'>
+	<header class='header header--editie hidden-md-down'>
 		<div class='header__inner'>
 			<h1><a href='{{editie.link}}'>{{editie.title}}</a> <span class='editie__tagline'>{{editie.tagline}}</span></h1>
 			{% if editie_menu %}
@@ -13,6 +13,8 @@
 			{% endif %}
 		</div>
 	</header>
+
+	{% include 'components/mobile/header-editie.twig' %}
 
 	<style type='text/css'>
 		{% 
