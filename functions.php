@@ -66,6 +66,8 @@ class TDISite extends TimberSite {
 
 		add_action('wp_enqueue_scripts', array( $this, 'register_scripts' ));
 
+		add_filter('jpeg_quality', array($this, 'adjust_jpeg_quality'));
+
 		parent::__construct();
 	}
 
@@ -153,11 +155,11 @@ class TDISite extends TimberSite {
 	}
 
 	function tease_size($src) {
-		return Timber\ImageHelper::resize($src, 1400, 933, 'center');
+		return Timber\ImageHelper::resize(Timber\ImageHelper::img_to_jpg($src), 1080, 720, 'center');
 	}
 
 	function full_size($src) {
-		return Timber\ImageHelper::resize($src, 1920, 1280, 'center');
+		return Timber\ImageHelper::resize(Timber\ImageHelper::img_to_jpg($src), 2250, 1500, 'center');
 	}
 
 	/* Custom post types */
@@ -401,12 +403,14 @@ class TDISite extends TimberSite {
 	}
 
 	function is_editie_curenta($editie) {
-		$editie_curenta_id = $this->object_id_in_current_language(
+		return $this->get_editie_curenta_in_current_language() === $editie->ID;
+	}
+
+	function get_editie_curenta_in_current_language() {
+		return $this->object_id_in_current_language(
 			$this->get_global_option('editia_curenta')->ID, 
 			'editie'
 		);
-
-		return $editie_curenta_id === $editie->ID;
 	}
 
 	/**
@@ -547,6 +551,10 @@ class TDISite extends TimberSite {
 
 		set_transient($transient_key, $data, WEEK_IN_SECONDS);
 		return $data;
+	}
+
+	function adjust_jpeg_quality() {
+	  return 95; // 100% quality
 	}
 }
 

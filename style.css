@@ -127,10 +127,10 @@ blockquote:after {
 	font-weight: normal;
 	font-family: 'Times New Roman', serif;
 }
-
+/*
 blockquote p::first-line {
 	background-color: #ffcc00;
-}
+}*/
 
 /* Component: Header */
 
@@ -388,15 +388,6 @@ body.single-eveniment:not(.editie-curenta) .menu-item-type-post_type_archive.men
 	----------------------------------
 */
 
-/* Component: Tease loc */
-
-.tease-loc {}
-.tease-loc__title {}
-.tease-loc__description {}
-.tease-loc__address {}
-
-.tease-loc--compact {}
-
 /* Component: Tease Eveniment */
 
 .tease-eveniment {
@@ -408,11 +399,11 @@ body.single-eveniment:not(.editie-curenta) .menu-item-type-post_type_archive.men
 	font-family: 'acumin-pro-condensed', Helvetica, Arial, sans-serif;
 	text-transform: capitalize;
 	letter-spacing: 0.02em;
-	color: #777;
 	font-size: 1.2em;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	font-weight: 700;
 }
 
 .tease-eveniment__title {
@@ -458,9 +449,14 @@ body.single-eveniment:not(.editie-curenta) .menu-item-type-post_type_archive.men
 	font-size: 0.9em;
 }
 
-/* Component: Tease Eveniment instance */
+.tease-eveniment__loc .tease-loc__title a {
+	color: #777;
+	font-weight: normal;
+}
 
-.tease-eveniment-instance {}
+.tease-loc--compact {
+	margin-bottom: 1em;
+}
 
 /* Component: Tease artist */
 .tease-artist {}
@@ -471,7 +467,11 @@ body.single-eveniment:not(.editie-curenta) .menu-item-type-post_type_archive.men
 
 .tease-eveniment-instance {
 	padding: 0.5em 0;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid #ddd;
+}
+
+.tease-eveniment-instance:last-child {
+	border-bottom: none;
 }
 
 
@@ -755,8 +755,16 @@ body.single-eveniment:not(.editie-curenta) .menu-item-type-post_type_archive.men
 	margin: 1.5em 0;
 }
 
+.post__header h1 {
+	margin-bottom: 0.25em;
+}
+
 .post__title {
 	margin: 1em 0;
+}
+
+.post__date {
+	font-weight: bold;
 }
 
 .post__content {
@@ -841,8 +849,9 @@ body.single-eveniment:not(.editie-curenta) .menu-item-type-post_type_archive.men
 
 .tease__date {
 	padding: 0.5em 0;
-	color: #777;
-	font-size: 1.2em;
+	/*color: #777;*/
+	font-size: 1em;
+	font-weight: bold;
 }
 
 .tease__thumb {
@@ -877,8 +886,22 @@ body.single-eveniment:not(.editie-curenta) .menu-item-type-post_type_archive.men
 .tease__excerpt {
 	text-align: left;
 	font-size: 0.9em;
+	color: #555;
+	line-height: 1.6;
+	margin: 1em 0;
 }
 
+.tease__address {
+	color: #555;
+}
+
+.tease__address a {
+	color: inherit;
+}
+
+.tease__address .icon use {
+	fill: #ccc;
+}
 
 /* Component: Map */
 
@@ -989,6 +1012,10 @@ body.single-eveniment:not(.editie-curenta) .menu-item-type-post_type_archive.men
 	margin: 1em 0 0.5em;
 }
 
+.archive__sectiontitle {
+	margin-bottom: 0.5em;
+}
+
 /* Component: Post navigation */
 
 .navigation {
@@ -1031,6 +1058,20 @@ body.single-eveniment:not(.editie-curenta) .menu-item-type-post_type_archive.men
 	right: 100%;
 }
 
+/* Component: Icons */
+
+.icon {
+	display: inline-block;
+	vertical-align: middle;
+	width: 1.2em;
+	height: 1.2em;
+}
+
+.icon use {
+	width: 100%;
+	height: 100%;
+	fill: currentColor;
+}
 
 /* MOBILE */
 

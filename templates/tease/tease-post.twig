@@ -3,7 +3,7 @@
 {% block content %}
 	<div class='tease tease--post'>
 		
-		<div class='tease__date'>{{ post.post_date | date("d—m—Y") }}</div>
+		<div class='tease__date'>{{ post.post_date | date("d/m/Y") }}</div>
 		
 		<a class='tease__thumb' href='{{post.link}}' title='{{ post.title }}'>
 			{% if post.thumbnail %}
@@ -21,7 +21,7 @@
 		{% if not exclude_desc %}
 		
 		<div class='tease__excerpt'>
-			{{ post.get_preview(50) }}
+			{{ post.get_preview(30, false, '→', true) }}
 		</div>
 
 		{% endif %}

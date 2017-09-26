@@ -1,18 +1,26 @@
 {% set coordonate = post.get_field('coordonate') %}
 {% set adresa = post.get_field('adress') %}
 
-<div class='tease-loc' data-marker data-lng='{{ coordonate.lng }}' data-lat='{{ coordonate.lat}}' data-title='{{post.title}}'>
-	<h4 class='tease-loc__title'><a href='{{post.link}}'>{{ post.title }}</a></h4>
-	<div class='tease-loc__adress'>
+<div class='tease tease--loc' data-marker data-lng='{{ coordonate.lng }}' data-lat='{{ coordonate.lat}}' data-title='{{post.title}}'>
 
-	{% if coordonate %}
-		<a href='http://www.google.com/maps/place/{{ coordonate.lat }},{{ coordonate.lng }}' target='_blank'>
+	<h2 class='tease__title'>
+		<a href='{{post.link}}'>{{ post.title }}</a>
+	</h2>
+
+	<div class='tease__address'>
+		{% if coordonate %}
+			<svg class='icon'><use xlink:href='#icon-place' fill='#ccc'/></svg>
+			<a href='http://www.google.com/maps/place/{{ coordonate.lat }},{{ coordonate.lng }}' target='_blank'>
+				{{ adresa }}
+			</a>
+		{% else %}
+			<svg class='icon'><use xlink:href='#icon-place' fill='#ccc'/></svg>
 			{{ adresa }}
-		</a>
-	{% else %}
-		{{ adresa }}
-	{% endif %}
+		{% endif %}
 	
 	</div>
-	<p class='tease-loc__description'>{{ post.content }}</p>
+
+	<div class='tease__desc'>
+		{{ post.content }}
+	</div>
 </div>

@@ -27,12 +27,7 @@
 			{% set loc = post.get_field('loc') %}
 		{% endif %}
 		
-		{% 
-			include 'tease/tease-loc-compact.twig' with {
-				'loc': loc,
-				'hide_address': true
-			}
-		%}
+		<h4 class='tease-loc__title'><a href='{{loc.link}}'>{{ loc.title }}</a></h4>
 	</div>
 
 	{% endif %}

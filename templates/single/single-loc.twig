@@ -9,7 +9,9 @@
 		<h1>{{post.title}}</h1>
 
 		<div class='post__byline'>
-			{{__("Adresa", "TDI")}}: 
+			<svg class='icon'>
+				<use xlink:href='#icon-place'/>
+			</svg>
 			{% if loc_coordonate %}
 				<a target='_blank' href='{{ gmaps(loc_coordonate) }}'>
 					{{ loc_adresa }}
@@ -24,9 +26,9 @@
 		{{ post.content }}
 	</div>
 
-	{% if evenimente %}
-		<h2>{{__("Evenimente", "TDI")}}</h2>
-		{% for row in evenimente | batch(3) %}
+	{% if evenimente_curente and evenimente_curente | length %}
+		<h2 class='archive__sectiontitle'>{{__("În ediția curentă", "TDI")}}</h2>
+		{% for row in evenimente_curente | batch(3) %}
 			<div class='row row--spaced'>
 			{% for eveniment in row %}
 				<div class='col-sm-4'>
@@ -40,4 +42,22 @@
 			</div>
 		{% endfor %}
 	{% endif %}
+
+	{% if evenimente_trecute and evenimente_trecute | length %}
+		<h2 class='archive__sectiontitle'>{{__("În ediții trecute", "TDI")}}</h2>
+		{% for row in evenimente_trecute | batch(3) %}
+			<div class='row row--spaced'>
+			{% for eveniment in row %}
+				<div class='col-sm-4'>
+				{% 
+					include 'tease/tease-eveniment.twig' with {
+						'post': eveniment
+					}
+				%}
+				</div>
+			{% endfor %}
+			</div>
+		{% endfor %}
+	{% endif %}
+
 {% endblock %}
