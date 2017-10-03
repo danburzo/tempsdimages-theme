@@ -1,0 +1,21 @@
+{% extends 'single/single-editie.twig' %}
+
+{% block editie_content %}
+	{% set evenimente = post.get_field('evenimente') %}
+	{% if evenimente | length %}
+		<h3>{{__("Spectacole prezentate în Platforma Independentă de Artele Spectacolului", "TDI")}}</h3>
+		{% for row in evenimente | batch(3) %}
+			<div class='row row--spaced'>
+			{% for eveniment in row %}
+				<div class='col-sm-4'>
+				{% 
+					include 'tease/tease-eveniment.twig' with {
+						'post': eveniment
+					}
+				%}
+				</div>
+			{% endfor %}
+			</div>
+		{% endfor %}
+	{% endif %}
+{% endblock %}

@@ -443,15 +443,16 @@ class TDISite extends TimberSite {
 	function register_scripts() {
 
 		$local_script_path = get_template_directory_uri() . '/static/js';
+		$vendor_script_path = get_template_directory_uri() . '/static/vendor';
 
 		wp_register_script('galleria', "${local_script_path}/galleria.js");
 		wp_register_script('gallery', "${local_script_path}/Gallery.js", array('galleria'));
 		wp_register_script('google-maps', "https://maps.googleapis.com/maps/api/js?callback=initMap&key=" . GMAPS_API_KEY);
 		wp_register_script('map', "${local_script_path}/map.js", array('google-maps'));
-
 		wp_register_script('mobile', "${local_script_path}/mobile.js");
-
 		wp_register_script('video-gallery', "${local_script_path}/video-gallery.js");
+		wp_register_script('chroma', "${vendor_script_path}/chroma.min.js");
+		wp_register_script('duotone', "${local_script_path}/duotone.js", array('chroma'));
 	}
 
 	function configure_script_tags($tag, $handle, $src) {

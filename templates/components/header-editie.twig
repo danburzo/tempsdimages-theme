@@ -16,11 +16,27 @@
 
 	{% include 'components/mobile/header-editie.twig' %}
 
+	{% set editie_colors = editie.get_field('colors') %}
+	{% set duotone_filter_id = "edition_duotone" %}
+
 	<style type='text/css'>
 		{% 
 			include 'stylesheet/edition.css.twig' with {
-				'colors': editie.get_field('colors')
+				'colors': editie_colors,
+				"duotone_filter_id": duotone_filter_id
 			}
 		%}
 	</style>
+
+
+	{{ enqueue_script('duotone') }}
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', function() {
+			new Duotone(
+				"{{ editie_colors.accent_secundar }}", 
+				"{{ editie_colors.accent_primar }}",
+				"{{ duotone_filter_id }}"
+			);
+		});
+	</script>
 {% endif %}

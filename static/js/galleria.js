@@ -65,6 +65,10 @@ Galleria.prototype.initialize = function(el, options) {
 
 		this.select(first_item);
 		this.animate();
+
+		window.addEventListener('orientationchange', function() {
+			this.animate();
+		}.bind(this))
 	} else {
 		console.warn('No items present at initialization time');
 	}

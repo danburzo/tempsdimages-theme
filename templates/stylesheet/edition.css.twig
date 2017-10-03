@@ -20,8 +20,17 @@
 		background-color: {{colors.accent_secundar}};
 	}
 
+	.tease-eveniment__thumb:before,
+	.tease-eveniment__thumb:after {
+		display: none
+	}
+
 	.tease-eveniment__thumb:after {
 		background-color: {{colors.accent_primar}};
+	}
+
+	.tease-eveniment__thumb img {
+		filter: grayscale(100%) brightness(1.2) contrast(1.5) url("#{{duotone_filter_id}}");
 	}
 
 	.editie__tagline {
