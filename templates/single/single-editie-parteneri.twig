@@ -1,0 +1,41 @@
+{% extends 'single/single-editie.twig' %}
+
+{% block editie_title %}
+	<!-- hide title -->
+{% endblock %}
+
+{% block editie_content %}
+	
+	<div class='row'>
+		<div class='col-md-8'>
+			<div class='post__content'>
+				{{ post.content }}
+			</div>
+		</div>
+	</div>
+
+	<div class='parteneri'>
+
+	{% set categorii = post.get_field('parteneri') %}
+	{% if categorii | length %}
+		{% for categorie in categorii %}
+			<div class='parteneri__cat row row--spaced'>
+				<div class='col col-md-2'>
+					<h3 class='edition-color--color-primary'>{{ categorie.categorie }}</h3>
+				</div>
+				<div class='col col-md-10'>
+					{% for partener in categorie.parteneri %}
+						{% 
+							include 'tease/tease-partener.twig' with {
+								'post': partener
+							}
+						%}
+					{% endfor %}
+				</div>
+			</div>
+		{% endfor %}
+	{% endif %}
+
+	</div>
+
+{% endblock %}

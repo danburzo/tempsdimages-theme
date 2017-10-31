@@ -1079,6 +1079,66 @@ body.single-eveniment:not(.editie-curenta) .menu-item-type-post_type_archive.men
 	fill: currentColor;
 }
 
+/* Component: Partener */
+
+.partener {
+	display: inline-block;
+	text-align: center;
+	margin-right: 2em;
+	margin-bottom: 2em;
+	vertical-align: middle;
+}
+
+.partener img {
+	display: block;
+	margin: 0 auto;
+}
+
+.partener__name {
+	display: none;
+}
+
+.partener__desc {
+	text-align: left;
+	margin: 1em 0;
+	color: #555;
+}
+
+.partener--portrait .partener__desc {
+	max-width: 12em;
+	font-size: 0.8em;
+	line-height: 1.25;
+}
+
+.partener--solo {
+	text-align: left;
+	display: block;
+}
+
+.partener--portrait img {
+	height: 5em;
+	width: auto;
+}
+
+.partener--landscape img {
+	width: 9em;
+	height: auto;
+}
+
+.partener--square img {
+	width: 5em;
+	height: auto;
+}
+
+.parteneri__cat {
+	margin: 2em 0;
+}
+
+.parteneri__cat h3 {
+	margin: 1em 0;
+	font-size: 1em;
+}
+
 /* MOBILE */
 
 /* xs */

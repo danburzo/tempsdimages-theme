@@ -1,0 +1,11 @@
+<div class='partener partener--{{partener.layout}}'>
+	<a href='{{partener.link}}' class='partener__link' target='_blank'>
+		{% if partener.logo %}
+			<img src='{{TimberImage(partener.logo) }}' alt='{{partener.nume}}' class='partener__logo'/>
+		{% endif %}
+		<span class='partener__name'>{{partener.nume}}</span>
+	</a>
+	{% if partener.text %}
+	<p class='partener__desc'>{{partener.text}}</p>
+	{% endif %}
+</div>
