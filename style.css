@@ -474,6 +474,14 @@ body.single-eveniment:not(.editie-curenta) .menu-item-type-post_type_archive.men
 	border-bottom: none;
 }
 
+.tease-eveniment-instance .evenimentinstance__tickets a {
+	color: #fff;
+	display: inline-block;
+	padding: 0.33em 1em;
+	border-radius: 0.2em;
+	margin: 0.75em 0;
+}
+
 
 /* Component: Calendar dayselect */
 
@@ -963,19 +971,23 @@ body.single-eveniment:not(.editie-curenta) .menu-item-type-post_type_archive.men
 .video__close {
 	position: absolute;
 	z-index: 1000;
-	right: 1em;
-	top: -0.5em;
+	right: 0.5em;
+	top: -0.3em;
+	background: #000;
+	padding: 0.1em 0.5em;
+	border-radius: 0.25em;
 }
 
 .video__close a {
 	color: #fff;
-	font-size: 3em;
+	font-size: 2em;
 	text-decoration: none;
 }
 
 .video__title {
+	display: none;
 	position: absolute;
-	font-size: 2em;
+	font-size: 1.2em;
 	font-family: 'acumin-pro-wide', Helvetica, Arial, sans-serif;
 	color: #fff;
 	font-weight: 700;
@@ -993,7 +1005,7 @@ body.single-eveniment:not(.editie-curenta) .menu-item-type-post_type_archive.men
 	left: 0;
 	right: 0;
 	bottom: 0;
-	top: 4em;
+	top: 0;
 }
 
 .video iframe {

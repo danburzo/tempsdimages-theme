@@ -517,8 +517,10 @@ class TDISite extends TimberSite {
 	function _adjacent_eveniment_where($post, $order) {
 		$meta_sql = $this->_get_editie_meta_query($post);
 		global $wpdb;
+		$post_status = "publish";
 		return $wpdb->prepare(
-			"WHERE p.post_status = 'publish' AND p.post_type = %s AND lower(p.post_title) {$order} lower(%s)",
+			"WHERE p.post_status = %s AND p.post_type = %s AND lower(p.post_title) {$order} lower(%s)",
+			$post_status,
 			$post->post_type,
 			$post->post_title
 		) . $meta_sql['where'];
