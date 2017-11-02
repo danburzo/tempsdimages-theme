@@ -1,6 +1,6 @@
 <?php
 	/*
-		Template Name: Platformă Independentă
+		Template Name: Pagină cu evenimente
 		Template Post Type: page, post, editie
 	*/
 
