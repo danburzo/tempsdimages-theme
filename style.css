@@ -273,7 +273,7 @@ body.single-eveniment:not(.editie-curenta) .menu-item-type-post_type_archive.men
 
 .header__nav li {
 	display: inline-block;
-	margin-right: 1em;
+	margin-right: 0.75em;
 }
 
 .header__langnav {}
@@ -554,6 +554,18 @@ body.single-eveniment:not(.editie-curenta) .menu-item-type-post_type_archive.men
 
 .calendar__day .tease-eveniment {
 	text-align: left;
+}
+
+.calendar__day .tease-eveniment__category {
+	position: absolute;
+	z-index: 2;
+	font-weight: 500;
+	line-height: 1;
+	background-color: #222;
+	color: #fff;
+	padding: 0.4em 0.5em;
+	font-size: 1em;
+	pointer-events: none;
 }
 
 
@@ -958,6 +970,12 @@ body.single-eveniment:not(.editie-curenta) .menu-item-type-post_type_archive.men
 	display: block;
 }
 
+/* Component: Page with evenimente */
+
+.page__evenimente {
+	margin: 2em 0;
+}
+
 /* Component: video */
 
 .video-overlay {
@@ -1171,12 +1189,6 @@ body.single-eveniment:not(.editie-curenta) .menu-item-type-post_type_archive.men
 		font-size: 14px;
 	}
 
-	.tease-eveniment__category {
-		overflow: visible;
-		text-overflow: none;
-		white-space: normal;
-	}
-
 	
 	.footer__social .menuitem {
 		display: inline-block;
@@ -1192,6 +1204,12 @@ body.single-eveniment:not(.editie-curenta) .menu-item-type-post_type_archive.men
 @media (max-width: 991px)  {
 	body {
 		border:none !important;
+	}
+
+	.tease-eveniment__category {
+		overflow: visible;
+		text-overflow: none;
+		white-space: normal;
 	}
 
 	.g__wrapper {

@@ -12,6 +12,7 @@
 
 	{% set evenimente = post.get_field('evenimente') %}
 	{% if evenimente | length %}
+		<div class='page__evenimente'>
 		{% for row in evenimente | batch(3) %}
 			<div class='row row--spaced'>
 			{% for eveniment in row %}
@@ -25,5 +26,6 @@
 			{% endfor %}
 			</div>
 		{% endfor %}
+		</div>
 	{% endif %}
 {% endblock %}
