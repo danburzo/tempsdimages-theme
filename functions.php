@@ -350,17 +350,54 @@ class TDISite extends TimberSite {
 		} 
 	}
 
-	function get_evenimente_for_editie($editie) {
+	function get_evenimente_for_editie_calendar($editie) {
+		return $this->get_evenimente_for_editie($editie, array(
+			'relation' => 'OR',
+			array(
+				'key' => 'exclude_from_calendar',
+				'compare' => 'NOT EXISTS'
+			),
+			array(
+				'key' => 'exclude_from_calendar',
+				'value' => '1',
+				'compare' => '!='
+			)
+		));
+	}
+
+	function get_evenimente_for_editie_program($editie) {
+		return $this->get_evenimente_for_editie($editie, array(
+			'relation' => 'OR',
+			array(
+				'key' => 'exclude_from_program',
+				'compare' => 'NOT EXISTS'
+			),
+			array(
+				'key' => 'exclude_from_program',
+				'value' => '1',
+				'compare' => '!='
+			)
+		));
+	}
+
+	function get_evenimente_for_editie($editie, $additional_meta = false) {
+		$meta_query = array(
+			'relation' => 'AND',
+			array(
+				'key' => 'editie',
+				'value' => $editie->ID
+			)
+		);
+
+		if ($additional_meta) {
+			array_push($meta_query, $additional_meta);
+		}
+
 		return Timber::get_posts(
 			array(
 				'posts_per_page' => -1,
 				'post_type' => 'eveniment',
-				'meta_query' => array(
-					array(
-						'key' => 'editie',
-						'value' => $editie->ID
-					)
-				),
+				'meta_query' => $meta_query,
 				'orderby' => 'title',
 				'order' => 'ASC'
 			)

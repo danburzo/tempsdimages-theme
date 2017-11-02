@@ -127,6 +127,13 @@ blockquote:after {
 	font-weight: normal;
 	font-family: 'Times New Roman', serif;
 }
+
+hr {
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+	border-width: 2px;
+}
+
 /*
 blockquote p::first-line {
 	background-color: #ffcc00;

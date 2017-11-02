@@ -2,7 +2,7 @@
 
 	$custom_template = 'single/single-editie-calendar.twig';
 	
-	$evenimente = $context['site']->get_evenimente_for_editie($editie);
+	$evenimente = $context['site']->get_evenimente_for_editie_calendar($editie);
 
 	$zile = [];
 	foreach ($evenimente as $eveniment) {
